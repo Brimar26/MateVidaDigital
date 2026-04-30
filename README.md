@@ -97,7 +97,12 @@
         <span onclick="cambiarIdioma()" style="cursor:pointer">🌐 <span id="labelIdioma">ES</span></span>
     </div>
 </div>
-
+<div class="hero">
+   
+    <span class="robot">🤖</span>
+    <h1 class="titulo">MateVida <span>Digital</span></h1>
+    <span class="slogan">“Aprende jugando”</span>
+</div>
     <div class="menu">
         <div class="card c-verde" onclick="cargarSeccion('juegos')">🎮<br>Juegos</div>
         <div class="card c-azul" onclick="cargarSeccion('videos')">📺<br>Videos</div>
