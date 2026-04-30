@@ -71,22 +71,32 @@
             .top-nav { justify-content: center; }
             .menu-usuario-top { width: 100%; justify-content: center; border-top: 1px solid #eee; padding-top: 10px; }
         }
+        .menu-usuario-top span:hover {
+    color: var(--azul);
+    text-decoration: underline;
+    transition: 0.3s;
+}
+
+#inputBusqueda:focus {
+    outline: none;
+    border-color: var(--azul);
+    box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
+}
     </style>
 </head>
 <body>
 
     <div class="top-nav">
-        <input type="text" placeholder="🔍 Buscar...">
-        <div class="menu-usuario-top">
-            <span>🏠 Inicio</span> | <span>👤 Perfil</span> | <span>🌐 ES</span>
-        </div>
+    <div class="busqueda-contenedor">
+        <!-- El evento onkeyup permite buscar mientras escribes -->
+        <input type="text" id="inputBusqueda" onkeyup="buscarContenido()" placeholder="🔍 Buscar...">
     </div>
-
-    <div class="hero">
-        <span class="robot">🤖</span>
-        <h1 class="titulo">MateVida <span>Digital</span></h1>
-        <span class="slogan">“Aprende jugando”</span>
+    <div class="menu-usuario-top">
+        <span onclick="irInicio()" style="cursor:pointer">🏠 Inicio</span> | 
+        <span onclick="mostrarPerfil()" style="cursor:pointer">👤 Perfil</span> | 
+        <span onclick="cambiarIdioma()" style="cursor:pointer">🌐 <span id="labelIdioma">ES</span></span>
     </div>
+</div>
 
     <div class="menu">
         <div class="card c-verde" onclick="cargarSeccion('juegos')">🎮<br>Juegos</div>
@@ -113,6 +123,56 @@
     </div>
 
     <script>
+        // 1. Función para el BUSCADOR
+function buscarContenido() {
+    let input = document.getElementById('inputBusqueda').value.toLowerCase();
+    let items = document.getElementsByClassName('item-lista');
+    
+    // Si estamos en una sección con rejilla, filtramos los elementos
+    for (let i = 0; i < items.length; i++) {
+        let texto = items[i].innerText.toLowerCase();
+        if (texto.includes(input)) {
+            items[i].style.display = "block";
+        } else {
+            items[i].style.display = "none";
+        }
+    }
+}
+
+// 2. Función para INICIO
+function irInicio() {
+    const pantalla = document.getElementById('pantalla');
+    pantalla.innerHTML = `
+        <h2>Bienvenido al Mundo Matemático</h2>
+        <p>Selecciona una categoría arriba para comenzar a aprender.</p>
+        <img src="https://img.freepik.com/vector-gratis/ilustracion-concepto-clase-matematicas_114360-3945.jpg" width="300">
+    `;
+}
+
+// 3. Función para PERFIL
+function mostrarPerfil() {
+    const pantalla = document.getElementById('pantalla');
+    pantalla.innerHTML = `
+        <h2 style="color:var(--azul)">👤 Mi Perfil de Estudiante</h2>
+        <div style="text-align:left; max-width:300px; margin: 0 auto; background:#f9f9f9; padding:20px; border-radius:15px;">
+            <p><strong>Nombre:</strong> Explorador Matemático</p>
+            <p><strong>Nivel:</strong> Primaria</p>
+            <p><strong>Logros:</strong> 🎖️ Maestro de Sumas</p>
+        </div>
+    `;
+}
+
+// 4. Función para IDIOMA
+function cambiarIdioma() {
+    const lang = document.getElementById('labelIdioma');
+    if(lang.innerText === "ES") {
+        lang.innerText = "EN";
+        lang.style.color = "red"; 
+    } else {
+        lang.innerText = "ES";
+        lang.style.color = "var(--azul)";
+    }
+}
         function cargarSeccion(tipo) {
             const pantalla = document.getElementById('pantalla');
             
