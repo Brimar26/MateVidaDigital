@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -14,12 +14,14 @@
             font-family: 'Arial Rounded MT Bold', sans-serif; text-align: center; 
         }
         
+        /* SOLUCIÓN MENÚ CELULAR (Basado en image_c74dbc.png) */
         .top-nav {
             background: white; padding: 15px; display: flex;
-            justify-content: space-around; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            align-items: center;
+            justify-content: space-between; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            align-items: center; flex-wrap: wrap; gap: 10px;
         }
         .top-nav input { padding: 8px; border-radius: 20px; border: 1px solid #ccc; width: 200px; }
+        .menu-usuario-top { display: flex; align-items: center; gap: 10px; font-size: 14px; white-space: nowrap; }
 
         .hero { padding: 20px; }
         .robot { font-size: 60px; display: block; }
@@ -52,6 +54,7 @@
         .item-lista {
             border: 2px solid #f0f0f0; padding: 20px; border-radius: 15px;
             cursor: pointer; transition: 0.3s; background: white;
+            text-decoration: none; color: black;
         }
         .item-lista:hover { background: #f9f9f9; border-color: var(--azul); transform: scale(1.05); }
         
@@ -63,13 +66,20 @@
             background: #2c3e50; color: white; padding: 10px 20px; 
             display: flex; justify-content: space-between; align-items: center;
         }
+
+        @media (max-width: 480px) {
+            .top-nav { justify-content: center; }
+            .menu-usuario-top { width: 100%; justify-content: center; border-top: 1px solid #eee; padding-top: 10px; }
+        }
     </style>
 </head>
 <body>
 
     <div class="top-nav">
         <input type="text" placeholder="🔍 Buscar...">
-        <div>🏠 Inicio | 👤 Perfil | 🌐 ES</div>
+        <div class="menu-usuario-top">
+            <span>🏠 Inicio</span> | <span>👤 Perfil</span> | <span>🌐 ES</span>
+        </div>
     </div>
 
     <div class="hero">
@@ -162,11 +172,30 @@
                 pantalla.innerHTML = `
                     <h2 style="color:var(--amarillo)">📚 Fichas e Imprimibles</h2>
                     <div class="grid-contenido">
-                        <div class="item-lista">
-                            <div style="font-size:30px">📄</div>
-                            <h3>Guía de Fracciones</h3>
-                            <p>PDF para descargar.</p>
-                        </div>
+                        <a href="https://web.seducoahuila.gob.mx/biblioweb/upload/operaciones-y-problemas-3c2ba-de-primaria%20(1).pdf" target="_blank" class="item-lista">
+                            <div style="font-size:40px">🧮</div>
+                            <h3>Operaciones y Problemas</h3>
+                        </a>
+                        <a href="https://www.jica.go.jp/Resource/project/elsalvador/004/materials/ku57pq00003u6zom-att/cuaderno_ejercicios_primaria_05.pdf" target="_blank" class="item-lista">
+                            <div style="font-size:40px">📓</div>
+                            <h3>Cuaderno de Ejercicios</h3>
+                        </a>
+                        <a href="https://www.mamutmatematicas.com/ejercicios/tabla-orden-operaciones.php" target="_blank" class="item-lista">
+                            <div style="font-size:40px">⚖️</div>
+                            <h3>Orden de Operaciones</h3>
+                        </a>
+                        <a href="https://arbolabc.com/juegos-tablas-de-multiplicar/tablas-imprimibles/operaciones-tabla-del-7" target="_blank" class="item-lista">
+                            <div style="font-size:40px">✖️</div>
+                            <h3>Tablas de Multiplicar</h3>
+                        </a>
+                        <a href="https://www.thatquiz.org/es/preview?c=eirl0256" target="_blank" class="item-lista">
+                            <div style="font-size:40px">💡</div>
+                            <h3>Problemas Básicos</h3>
+                        </a>
+                        <a href="https://pruebat.org/lo-que-debes-saber-sobre-las-matematicas-para-la-vida-diaria/ejercicio-practica-resolviendo-operaciones-basicas/11407-331498" target="_blank" class="item-lista">
+                            <div style="font-size:40px">🛠️</div>
+                            <h3>Práctica para la Vida</h3>
+                        </a>
                     </div>`;
             }
             else if (tipo === 'padres') {
@@ -180,7 +209,6 @@
             document.getElementById('titulo-juego-actual').innerText = nombre;
             const iframe = document.getElementById('iframe-software');
             const visor = document.getElementById('visor-pro');
-            
             iframe.src = url;
             visor.style.display = 'block';
             document.body.style.overflow = 'hidden'; 
@@ -189,7 +217,6 @@
         function cerrarSoftware() {
             const visor = document.getElementById('visor-pro');
             const iframe = document.getElementById('iframe-software');
-            
             visor.style.display = 'none';
             iframe.src = ""; 
             document.body.style.overflow = 'auto';
