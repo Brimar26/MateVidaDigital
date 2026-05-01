@@ -80,7 +80,7 @@
 <div class="hero">
     <span class="robot">🤖</span>
     <h1 class="titulo">MateVida <span>Digital</span></h1>
-    <span class="slogan">“Con alas del conocimiento”</span>
+    <span class="slogan">“Aprende jugando”</span>
 </div>
 
 <div class="menu">
@@ -105,7 +105,6 @@
 </div>
 
 <script>
-// BUSCADOR: Filtra cualquier elemento con la clase 'item-lista'
 function buscarContenido() {
     let input = document.getElementById('inputBusqueda').value.toLowerCase();
     let items = document.getElementsByClassName('item-lista');
@@ -116,71 +115,107 @@ function buscarContenido() {
 }
 
 function irInicio() {
-    location.reload(); // Recarga para volver al estado inicial limpio
+    location.reload();
 }
 
 function mostrarPerfil() {
     document.getElementById('pantalla').innerHTML = `
-        <h2 style="color:var(--azul)">👤 Mi Perfil</h2>
+        <h2 style="color:var(--azul)">👤 Mi Perfil de Estudiante</h2>
         <div style="background:#f9f9f9; padding:20px; border-radius:15px; display:inline-block;">
-            <p><strong>Estudiante:</strong> Explorador Klexdy</p>
-            <p><strong>Misión:</strong> Dominar las Matemáticas</p>
+            <p><strong>Nombre:</strong> Explorador Matemático</p>
+            <p><strong>Nivel:</strong> Primaria</p>
+            <p><strong>Logros:</strong> 🎖️ Maestro de Sumas</p>
         </div>`;
 }
 
 function cargarSeccion(tipo) {
     const pantalla = document.getElementById('pantalla');
-    let contenido = "";
+    let html = "";
 
     if (tipo === 'juegos') {
-        contenido = `
-            <h2 style="color:var(--verde)">🎮 Juegos Interactivos</h2>
+        html = `
+            <h2 style="color:var(--verde)">🎮 Panel de Actividades Interactivas</h2>
             <div class="grid-contenido">
                 <div class="item-lista" onclick="lanzarSoftware('https://view.genially.com/69ec0dd6dc5b8be996902a64', 'Carrera Operaciones')">
                     <div style="font-size:40px">🏎️</div><h3>Carrera Operaciones</h3>
                 </div>
+                <div class="item-lista" onclick="lanzarSoftware('https://view.genially.com/69ec0094c6e29311f5854247', 'Operaciones Matemáticas')">
+                    <div style="font-size:40px">➕</div><h3>Operaciones Matemáticas</h3>
+                </div>
                 <div class="item-lista" onclick="lanzarSoftware('https://es.educaplay.com/juego/28831395-operaciones_fundamentales_si_no.html', 'Si o No')">
                     <div style="font-size:40px">✅</div><h3>Si o No</h3>
                 </div>
-                <div class="item-lista" onclick="lanzarSoftware('https://mijuegomatem.blogspot.com/2026/04/domino.html', 'Dominó')">
-                    <div style="font-size:40px">🎲</div><h3>Dominó Matemático</h3>
+                <div class="item-lista" onclick="lanzarSoftware('https://es.educaplay.com/juego/28831338-operaciones_en_la_vida_diaria.html', 'Vida Diaria')">
+                    <div style="font-size:40px">📋</div><h3>Vida Diaria</h3>
+                </div>
+                <div class="item-lista" onclick="lanzarSoftware('https://es.educaplay.com/juego/28918221-desafios_cotidianos_con_operaciones.html', 'Desafíos Cotidianos')">
+                    <div style="font-size:40px">🏆</div><h3>Desafíos Cotidianos</h3>
+                </div>
+                <div class="item-lista" onclick="lanzarSoftware('https://mijuegomatem.blogspot.com/2026/04/domino.html', 'Domino Matemático')">
+                    <div style="font-size:40px">🎲</div><h3>Dominó</h3>
                 </div>
             </div>`;
     } 
     else if (tipo === 'videos') {
-        contenido = `
-            <h2 style="color:var(--azul)">📺 Videoteca</h2>
+        html = `
+            <h2 style="color:var(--azul)">📺 Videoteca Educativa</h2>
             <div class="grid-contenido">
-                <div class="item-lista" onclick="lanzarSoftware('https://www.youtube.com/embed/aEh9WnqiyAg', 'Vida Diaria')">
-                    <img src="https://img.youtube.com/vi/aEh9WnqiyAg/mqdefault.jpg" width="100%" style="border-radius:10px;">
-                    <h3>Operaciones Reales</h3>
+                <div class="item-lista" onclick="lanzarSoftware('https://www.youtube.com/embed/aEh9WnqiyAg', 'Operaciones Vida Diaria')">
+                    <img src="https://img.youtube.com/vi/aEh9WnqiyAg/mqdefault.jpg" width="100%" style="border-radius:10px; margin-bottom:10px;">
+                    <h3>Vida Diaria</h3>
+                </div>
+                <div class="item-lista" onclick="lanzarSoftware('https://www.youtube.com/embed/otatgqU8o0w', 'Fracciones Homogéneas')">
+                    <img src="https://img.youtube.com/vi/otatgqU8o0w/mqdefault.jpg" width="100%" style="border-radius:10px; margin-bottom:10px;">
+                    <h3>Fracciones Homogéneas</h3>
+                </div>
+                <div class="item-lista" onclick="lanzarSoftware('https://www.youtube.com/embed/yyKkL0R59g0', 'Fracciones Heterogéneas')">
+                    <img src="https://img.youtube.com/vi/yyKkL0R59g0/mqdefault.jpg" width="100%" style="border-radius:10px; margin-bottom:10px;">
+                    <h3>Fracciones Heterogéneas</h3>
+                </div>
+                <div class="item-lista" onclick="lanzarSoftware('https://www.youtube.com/embed/WBqXpj1_96g', 'Resta de Fracciones')">
+                    <img src="https://img.youtube.com/vi/WBqXpj1_96g/mqdefault.jpg" width="100%" style="border-radius:10px; margin-bottom:10px;">
+                    <h3>Resta de Fracciones</h3>
                 </div>
             </div>`;
     }
     else if (tipo === 'fichas') {
-        contenido = `
-            <h2 style="color:var(--amarillo)">📚 Fichas para Descargar</h2>
+        html = `
+            <h2 style="color:var(--amarillo)">📚 Fichas e Imprimibles</h2>
             <div class="grid-contenido">
                 <a href="https://web.seducoahuila.gob.mx/biblioweb/upload/operaciones-y-problemas-3c2ba-de-primaria%20(1).pdf" target="_blank" class="item-lista">
-                    <div style="font-size:40px">🧮</div><h3>Problemas de Primaria</h3>
+                    <div style="font-size:40px">🧮</div><h3>Operaciones y Problemas</h3>
+                </a>
+                <a href="https://www.jica.go.jp/Resource/project/elsalvador/004/materials/ku57pq00003u6zom-att/cuaderno_ejercicios_primaria_05.pdf" target="_blank" class="item-lista">
+                    <div style="font-size:40px">📓</div><h3>Cuaderno de Ejercicios</h3>
                 </a>
                 <a href="https://www.mamutmatematicas.com/ejercicios/tabla-orden-operaciones.php" target="_blank" class="item-lista">
                     <div style="font-size:40px">⚖️</div><h3>Orden de Operaciones</h3>
                 </a>
+                <a href="https://arbolabc.com/juegos-tablas-de-multiplicar/tablas-imprimibles/operaciones-tabla-del-7" target="_blank" class="item-lista">
+                    <div style="font-size:40px">✖️</div><h3>Tablas de Multiplicar</h3>
+                </a>
+                <a href="https://www.thatquiz.org/es/preview?c=eirl0256" target="_blank" class="item-lista">
+                    <div style="font-size:40px">💡</div><h3>Problemas Básicos</h3>
+                </a>
+                <a href="https://pruebat.org/lo-que-debes-saber-sobre-las-matematicas-para-la-vida-diaria/ejercicio-practica-resolviendo-operaciones-basicas/11407-331498" target="_blank" class="item-lista">
+                    <div style="font-size:40px">🛠️</div><h3>Práctica para la Vida</h3>
+                </a>
             </div>`;
     }
     else if (tipo === 'recursos') {
-        contenido = `
-            <h2 style="color:var(--naranja)">👥 Recursos TIC</h2>
+        html = `
+            <h2 style="color:var(--naranja)">👥 Sección para Padres</h2>
+            <p>Consejos pedagógicos para apoyar el aprendizaje en casa.</p>
             <div class="grid-contenido">
                 <div class="item-lista">
-                    <div style="font-size:40px">💡</div><h3>Estrategias Pedagógicas</h3>
-                    <p>Uso de Scratch y Educaplay en el aula.</p>
+                    <div style="font-size:40px">🏠</div>
+                    <h3>Guía para Padres</h3>
+                    <p>Cómo motivar el estudio de las matemáticas.</p>
                 </div>
             </div>`;
     }
 
-    pantalla.innerHTML = contenido;
+    pantalla.innerHTML = html;
 }
 
 function lanzarSoftware(url, nombre) {
@@ -197,6 +232,5 @@ function cerrarSoftware() {
     document.body.style.overflow = 'auto';
 }
 </script>
-
 </body>
 </html>
