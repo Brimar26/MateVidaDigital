@@ -107,7 +107,7 @@
         <div class="card c-verde" onclick="cargarSeccion('juegos')">🎮<br>Juegos</div>
         <div class="card c-azul" onclick="cargarSeccion('videos')">📺<br>Videos</div>
         <div class="card c-amarillo" onclick="cargarSeccion('fichas')">📚<br>Fichas</div>
-        <div class="card c-naranja" onclick="cargarSeccion('padres')">👥<br>Padres</div>
+        <div class="card c-naranja" onclick="cargarSeccion('Recursos')">👥<br>Recursos</div>
     </div>
 
     <div id="pantalla" class="main-stage">
@@ -269,10 +269,10 @@ function cambiarIdioma() {
                         </a>
                     </div>`;
             }
-            else if (tipo === 'padres') {
+            else if (tipo === 'Recursos') {
                 pantalla.innerHTML = `
-                    <h2 style="color:var(--naranja)">👥 Sección para Padres</h2>
-                    <p>Consejos pedagógicos para apoyar el aprendizaje en casa.</p>`;
+                    <h2 style="color:var(--naranja)">👥 Sección para Recursos</h2>
+                    <p>Consejos pedagógicos para apoyar el aprendizaje.</p>`;
             }
         }
 
