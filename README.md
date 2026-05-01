@@ -111,13 +111,10 @@
     </div>
 
     <div id="pantalla" class="main-stage">
-       <h1 class="titulo-mision">
-    Misión Matemática:<br>
-    <span style="font-size: 0.7em;">¡Tu Aventura Comienza Aquí! 🗺️</span>
-</h1>
+        <h2>Bienvenido al Mundo Matemático</h2>
         <p>Selecciona una categoría arriba para comenzar a aprender.</p>
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj_8c-eFtZCn5sYR164nzrQc18pByMflEBSv-RM5rp5HNfQvX_qmVnqI9Oixvm2pXqrnq-nK8WVH1K8DOOlIylcOQiqlb5QhFV-MVa_OlEZnMjqgcVdpI7Oo2u-gzgheQBMA0X_jKHxjMqxQ9MU1BU00Rpg1qUi_IC11ohJmOxRKwodJM12FMBzcOsv-rw/s880/Gemini_Generated_Image_at68jgat68jgat68.jpg">
-    </div>
+        <img src="https://i.postimg.cc/Hn9YMpgX/Gemini-Generated-Image-at68jgat68jgat68.jpg">   
+  </div>
 
     <div id="visor-pro">
         <div class="barra-visor">
@@ -151,12 +148,9 @@ function buscarContenido() {
 function irInicio() {
     const pantalla = document.getElementById('pantalla');
     pantalla.innerHTML = `
-        <h1 class="titulo-mision">
-    Misión Matemática:<br>
-    <span style="font-size: 0.7em;">¡Tu Aventura Comienza Aquí! 🗺️</span>
-</h1>
+        <h2>Bienvenido al Mundo Matemático</h2>
         <p>Selecciona una categoría arriba para comenzar a aprender.</p>
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj_8c-eFtZCn5sYR164nzrQc18pByMflEBSv-RM5rp5HNfQvX_qmVnqI9Oixvm2pXqrnq-nK8WVH1K8DOOlIylcOQiqlb5QhFV-MVa_OlEZnMjqgcVdpI7Oo2u-gzgheQBMA0X_jKHxjMqxQ9MU1BU00Rpg1qUi_IC11ohJmOxRKwodJM12FMBzcOsv-rw/s880/Gemini_Generated_Image_at68jgat68jgat68.jpg">
+        <img src= <"https://i.postimg.cc/Hn9YMpgX/Gemini-Generated-Image-at68jgat68jgat68.jpg">
     `;
 }
 
@@ -241,10 +235,7 @@ function cambiarIdioma() {
             }
             else if (tipo === 'fichas') {
                 pantalla.innerHTML = `
-                    <h2 style="color:var(--amarillo)">📚 Fichas e Imprimibles</h2>
-                    <div class="grid-contenido">
-                        <a href="https://web.seducoahuila.gob.mx/biblioweb/upload/operaciones-y-problemas-3c2ba-de-primaria%20(1).pdf" target="_blank" class="item-lista">
-                            <div style="font-size:40px">🧮</div>
+                   
                             <h3>Operaciones y Problemas</h3>
                         </a>
                         <a href="https://www.jica.go.jp/Resource/project/elsalvador/004/materials/ku57pq00003u6zom-att/cuaderno_ejercicios_primaria_05.pdf" target="_blank" class="item-lista">
@@ -272,7 +263,11 @@ function cambiarIdioma() {
             else if (tipo === 'Recursos') {
                 pantalla.innerHTML = `
                     <h2 style="color:var(--naranja)">👥 Sección para Recursos</h2>
-                    <p>Consejos pedagógicos para apoyar el aprendizaje.</p>`;
+                    <p>Consejos pedagógicos para apoyar el aprendizaje.</p>;
+                     <h2 style="color:var(--amarillo)">📚 Fichas e Imprimibles</h2>
+                    <div class="grid-contenido">
+                        <a href="https://web.seducoahuila.gob.mx/biblioweb/upload/operaciones-y-problemas-3c2ba-de-primaria%20(1).pdf" target="_blank" class="item-lista">
+                            <div style="font-size:40px">🧮</div>
             }
         }
 
