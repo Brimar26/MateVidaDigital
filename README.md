@@ -1,3 +1,4 @@
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -110,21 +111,9 @@
     </div>
 
     <div id="pantalla" class="main-stage">
-        <h1 class="titulo-mision">
-    Misión Matemática:<br>
-    <span style="font-size: 0.7em;">¡Tu Aventura Comienza Aquí! 🗺️</span>
-</h1>
+        <h2>Bienvenido al Mundo Matemático</h2>
         <p>Selecciona una categoría arriba para comenzar a aprender.</p>
-        <a href="https://brimar26.github.io/Bienvenidos/" target="_blank"
-<div style="width: 110%; display: flex; justify-content: center; margin-top: 20px;">
-    <iframe 
-        src="https://brimar26.github.io/Bienvenidos/" 
-        width="110%" 
-        height="600px" 
-        style="border: 10px solid #310909; border-radius: 20px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);" 
-        scrolling="no">
-    </iframe>
-</div>
+        <img src="https://img.freepik.com/vector-gratis/ilustracion-concepto-clase-matematicas_114360-3945.jpg" width="300">
     </div>
 
     <div id="visor-pro">
@@ -161,7 +150,7 @@ function irInicio() {
     pantalla.innerHTML = `
         <h2>Bienvenido al Mundo Matemático</h2>
         <p>Selecciona una categoría arriba para comenzar a aprender.</p>
-        <img src="https://img.freepik.com/vector-gratis/ilustracion-concepto-clase-matematicas_114360-3945.jpg" width="300">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj_8c-eFtZCn5sYR164nzrQc18pByMflEBSv-RM5rp5HNfQvX_qmVnqI9Oixvm2pXqrnq-nK8WVH1K8DOOlIylcOQiqlb5QhFV-MVa_OlEZnMjqgcVdpI7Oo2u-gzgheQBMA0X_jKHxjMqxQ9MU1BU00Rpg1qUi_IC11ohJmOxRKwodJM12FMBzcOsv-rw/s880/Gemini_Generated_Image_at68jgat68jgat68.jpg">
     `;
 }
 
