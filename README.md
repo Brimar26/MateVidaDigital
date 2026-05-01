@@ -91,7 +91,7 @@
 </div>
 
 <div id="pantalla" class="main-stage">
-    <h2>Bienvenido al Mundo Matemático</h2>
+    <h2>Entrena tu Mente, Domina los Números</h2>
     <p>Selecciona una categoría arriba para comenzar a aprender.</p>
     <img src="https://i.postimg.cc/Hn9YMpgX/Gemini-Generated-Image-at68jgat68jgat68.jpg" style="max-width:100%; border-radius:20px;">   
 </div>
@@ -204,8 +204,8 @@ function cargarSeccion(tipo) {
     }
     else if (tipo === 'recursos') {
         html = `
-            <h2 style="color:var(--naranja)">👥 Sección para Padres</h2>
-            <p>Consejos pedagógicos para apoyar el aprendizaje en casa.</p>
+            <h2 style="color:var(--naranja)">👥 Sección de Recursos</h2>
+            <p>Consejos pedagógicos para apoyar el aprendizaje.</p>
             <div class="grid-contenido">
                 <div class="item-lista">
                     <div style="font-size:40px">🏠</div>
