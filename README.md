@@ -150,7 +150,7 @@ function irInicio() {
     pantalla.innerHTML = `
         <h2>Bienvenido al Mundo Matemático</h2>
         <p>Selecciona una categoría arriba para comenzar a aprender.</p>
-        <img src="https://img.freepik.com/vector-gratis/ilustracion-concepto-clase-matematicas_114360-3945.jpg" width="300">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj_8c-eFtZCn5sYR164nzrQc18pByMflEBSv-RM5rp5HNfQvX_qmVnqI9Oixvm2pXqrnq-nK8WVH1K8DOOlIylcOQiqlb5QhFV-MVa_OlEZnMjqgcVdpI7Oo2u-gzgheQBMA0X_jKHxjMqxQ9MU1BU00Rpg1qUi_IC11ohJmOxRKwodJM12FMBzcOsv-rw/s880/Gemini_Generated_Image_at68jgat68jgat68.jpg">
     `;
 }
 
