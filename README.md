@@ -151,7 +151,7 @@ function irInicio() {
         <h2>Bienvenido al Mundo Matemático</h2>
         <p>Selecciona una categoría arriba para comenzar a aprender.</p>
         <img src= <"https://i.postimg.cc/Hn9YMpgX/Gemini-Generated-Image-at68jgat68jgat68.jpg">
-    `;
+    ;
 }
 
 // 3. Función para PERFIL
