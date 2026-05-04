@@ -151,9 +151,10 @@ function cargarSeccion(tipo) {
                 <div class="item-lista" onclick="lanzarSoftware('https://es.educaplay.com/juego/28918221-desafios_cotidianos_con_operaciones.html', 'Desafíos Cotidianos')">
                     <div style="font-size:40px">🏆</div><h3>Desafíos Cotidianos</h3>
                 </div>
-                <div class="item-lista" onclick="lanzarSoftware('https://mijuegomatem.blogspot.com/2026/04/domino.html', 'Domino Matemático')">
-                    <div style="font-size:40px">🎲</div><h3>Dominó</h3>
+                <div class="item-lista" onclick="lanzarSoftware('https://view.genially.com/69f7e18ce15a962730ed9a10', 'Compras')">
+                    <div style="font-size:40px">🎮</div><h3>Compras</h3>
                 </div>
+                
             </div>`;
     } 
     else if (tipo === 'videos') {
@@ -211,6 +212,17 @@ function cargarSeccion(tipo) {
                     <div style="font-size:40px">🏠</div>
                     <h3>Guía para Padres</h3>
                     <p>Cómo motivar el estudio de las matemáticas.</p>
+               <li> <a href='https://gu-a-para-padres.tiiny.site/'>Menú de Padres</a></li>
+                 </div>
+                <div class="item-lista">
+                    <div style="font-size:40px">👤</div>
+                    <h3>Guía para Estudiantes</h3>
+                 <li> <a href='https://www.pdffiller.com/s/1LObffqZo7'>Menú de Estudiantes</a></li>
+                </div>
+                <div class="item-lista">
+                <div style="font-size:40px">🎖️</div>
+                <h3>Guía para Docentes</h3>
+                <li> <a href='https://www.pdffiller.com/s/ULtGifon'>Menú de Docentes</a></li>
                 </div>
             </div>`;
     }
