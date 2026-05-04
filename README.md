@@ -154,6 +154,10 @@ function cargarSeccion(tipo) {
                 <div class="item-lista" onclick="lanzarSoftware('https://view.genially.com/69f7e18ce15a962730ed9a10', 'Compras')">
                     <div style="font-size:40px">🎮</div><h3>Compras</h3>
                 </div>
+                <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/DADOS-M-GICOS/', 'DADOS')">
+                    <div style="font-size:40px">🎮</div><h3>DADOS</h3>
+                </div>
+                 
                 
             </div>`;
     } 
