@@ -93,7 +93,7 @@
 <div id="pantalla" class="main-stage">
     <h2>Entrena tu Mente, Domina los Números</h2>
     <p>Selecciona una categoría arriba para comenzar a aprender.</p>
-    <img src="https://i.postimg.cc/Hn9YMpgX/Gemini-Generated-Image-at68jgat68jgat68.jpg" style="max-width:100%; border-radius:20px;">   
+    <img src="https://s10.aconvert.com/convert/p3r68-cdx67/azgyk-w0p1z.jpg" style="max-width:100%; border-radius:20px;">   
 </div>
 
 <div id="visor-pro">
@@ -169,18 +169,20 @@ function cargarSeccion(tipo) {
                     <img src="https://img.youtube.com/vi/aEh9WnqiyAg/mqdefault.jpg" width="100%" style="border-radius:10px; margin-bottom:10px;">
                     <h3>Vida Diaria</h3>
                 </div>
-                <div class="item-lista" onclick="lanzarSoftware('https://www.youtube.com/embed/otatgqU8o0w', 'Fracciones Homogéneas')">
+                <div class="item-lista" onclick="lanzarSoftware('https://www.youtube.com/embed/otatgqU8o0w', 'Matemàtica divertida')">
                     <img src="https://img.youtube.com/vi/otatgqU8o0w/mqdefault.jpg" width="100%" style="border-radius:10px; margin-bottom:10px;">
-                    <h3>Fracciones Homogéneas</h3>
+                    <h3>Matemàtica divertida</h3>
                 </div>
-                <div class="item-lista" onclick="lanzarSoftware('https://www.youtube.com/embed/yyKkL0R59g0', 'Fracciones Heterogéneas')">
+                <div class="item-lista" onclick="lanzarSoftware('https://www.youtube.com/embed/yyKkL0R59g0', 'Aprende a dividir')">
                     <img src="https://img.youtube.com/vi/yyKkL0R59g0/mqdefault.jpg" width="100%" style="border-radius:10px; margin-bottom:10px;">
-                    <h3>Fracciones Heterogéneas</h3>
+                    <h3>Aprende a dividir</h3>
                 </div>
-                <div class="item-lista" onclick="lanzarSoftware('https://www.youtube.com/embed/WBqXpj1_96g', 'Resta de Fracciones')">
+                <div class="item-lista" onclick="lanzarSoftware('https://www.youtube.com/embed/WBqXpj1_96g', 'Operaciones')">
                     <img src="https://img.youtube.com/vi/WBqXpj1_96g/mqdefault.jpg" width="100%" style="border-radius:10px; margin-bottom:10px;">
-                    <h3>Resta de Fracciones</h3>
+                    <h3>Operaciones</h3>
                 </div>
+               
+
             </div>`;
     }
     else if (tipo === 'fichas') {
