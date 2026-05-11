@@ -148,23 +148,21 @@ function lanzarSoftware(url, nombre) {
 }
 
 // Función para compartir el enlace individual
-async function compartirJuego() {
-    const shareData = {
-        title: nombreActual,
-        text: `¡Mira este juego en MateVida Digital: ${nombreActual}!`,
-        url: urlActual
+async function compartirJuego() {const dataCompartir = {
+        title: 'Mate-Blast',
+        text: '¡Mira este juego para aprender matemáticas!',
+        url: window.location.href // O la URL específica de tu juego en GitHub
     };
 
-    try {
-        if (navigator.share) {
-            await navigator.share(shareData);
-        } else {
-            // Fallback: Copiar al portapapeles
-            await navigator.clipboard.writeText(urlActual);
-            alert("Enlace copiado al portapapeles: " + urlActual);
-        }
-    } catch (err) {
-        console.log("Error al compartir", err);
+    // Verifica si el celular soporta la función nativa de compartir
+    if (navigator.share) {
+        navigator.share(dataCompartir)
+            .then(() => console.log('Compartido con éxito'))
+            .catch((error) => console.log('Error al compartir:', error));
+    } else {
+        // Opción de respaldo para PC o navegadores que no lo soportan
+        navigator.clipboard.writeText(window.location.href);
+        alert("Enlace copiado al portapapeles");
     }
 }
 
