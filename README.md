@@ -1,9 +1,9 @@
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MateVida Digital - Portal Educativo</title>
-    <!-- Librería para Códigos QR -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         :root {
@@ -58,28 +58,42 @@
         }
         .item-lista:hover { border-color: var(--azul); transform: scale(1.05); }
         
-        /* Estilos del Visor y Modal de Compartir */
+        /* Estilos del Visor Corregidos para Móvil */
         #visor-pro {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: white; z-index: 1000;
+            background: #1a1a2e; z-index: 2000;
         }
         .barra-visor {
-            background: #2c3e50; color: white; padding: 10px 20px; 
+            background: #16213e; color: white; padding: 10px; 
             display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 10px;
         }
+        #titulo-juego-actual {
+            flex: 1; min-width: 150px; text-align: left;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .grupo-botones { display: flex; gap: 5px; }
         .btn-accion {
-            border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; color: white; font-weight: bold; margin-left: 5px;
+            border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; 
+            color: white; font-weight: bold; font-size: 12px;
+            display: flex; align-items: center; gap: 4px;
         }
 
         /* Modal QR */
         #modal-qr {
             display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
             background: white; padding: 20px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            z-index: 1001; text-align: center;
+            z-index: 2002; text-align: center; width: 250px;
         }
         #overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); z-index: 1000;
+            background: rgba(0,0,0,0.8); z-index: 2001;
+        }
+
+        @media (max-width: 480px) {
+            .barra-visor { justify-content: center; }
+            #titulo-juego-actual { text-align: center; width: 100%; font-size: 14px; }
+            .btn-accion { padding: 6px 8px; font-size: 11px; }
         }
     </style>
 </head>
@@ -112,25 +126,23 @@
     <img src="https://raw.githubusercontent.com/Brimar26/portada/main/portadamate.png" alt="Portada MateVida" style="max-width:100%; border-radius:20px; display: block; margin: 0 auto;">   
 </div>
 
-<!-- Visor de Juego -->
 <div id="visor-pro">
-    <div class="barra-visor">
+    <div class="barra-visor" translate="no">
         <strong id="titulo-juego-actual">Cargando...</strong>
-        <div>
-            <button onclick="compartirJuego()" class="btn-accion" style="background: var(--azul);">🔗 COMPARTIR</button>
-            <button onclick="mostrarQR()" class="btn-accion" style="background: var(--amarillo); color: black;">📱 QR</button>
-            <button onclick="cerrarSoftware()" class="btn-accion" style="background:#e74c3c;">✖ CERRAR</button>
+        <div class="grupo-botones">
+            <button onclick="compartirJuego()" class="btn-accion" style="background: var(--azul);"><span>🔗</span> COMPARTIR</button>
+            <button onclick="mostrarQR()" class="btn-accion" style="background: var(--amarillo); color: black;"><span>📱</span> QR</button>
+            <button onclick="cerrarSoftware()" class="btn-accion" style="background:#e74c3c;"><span>✖</span> CERRAR</button>
         </div>
     </div>
-    <iframe id="iframe-software" src="" style="width:100%; height:calc(100% - 50px); border:none;"></iframe>
+    <iframe id="iframe-software" src="" style="width:100%; height:calc(100% - 60px); border:none; background: white;"></iframe>
 </div>
 
-<!-- Modal para QR -->
 <div id="overlay" onclick="cerrarQR()"></div>
 <div id="modal-qr">
     <h3>Escanea para jugar</h3>
     <div id="qrcode" style="display: flex; justify-content: center; margin: 15px;"></div>
-    <button onclick="cerrarQR()" class="btn-accion" style="background: #333;">Cerrar</button>
+    <button onclick="cerrarQR()" class="btn-accion" style="background: #333; margin: 0 auto;">Cerrar</button>
 </div>
 
 <script>
@@ -147,33 +159,28 @@ function lanzarSoftware(url, nombre) {
     document.body.style.overflow = 'hidden'; 
 }
 
-// Función para compartir el enlace individual
-async function compartirJuego() {const shareData = {
+async function compartirJuego() {
+    const shareData = {
         title: nombreActual,
         text: `¡Mira este juego en MateVida Digital: ${nombreActual}!`,
         url: urlActual
     };
-
     try {
         if (navigator.share) {
             await navigator.share(shareData);
         } else {
-            // Fallback: Copiar al portapapeles
             await navigator.clipboard.writeText(urlActual);
-            alert("Enlace copiado al portapapeles: " + urlActual);
+            alert("Enlace copiado al portapapeles");
         }
-    } catch (err) {
-        console.log("Error al compartir", err);
-    }
+    } catch (err) { console.log("Error al compartir", err); }
 }
 
-// Función para mostrar Código QR
 function mostrarQR() {
-    document.getElementById('qrcode').innerHTML = ""; // Limpiar anterior
+    document.getElementById('qrcode').innerHTML = ""; 
     new QRCode(document.getElementById("qrcode"), {
         text: urlActual,
-        width: 200,
-        height: 200
+        width: 180,
+        height: 180
     });
     document.getElementById('modal-qr').style.display = 'block';
     document.getElementById('overlay').style.display = 'block';
@@ -190,8 +197,6 @@ function cerrarSoftware() {
     document.body.style.overflow = 'auto';
     urlActual = "";
 }
-
-// --- El resto de tus funciones originales se mantienen igual ---
 
 function buscarContenido() {
     let input = document.getElementById('inputBusqueda').value.toLowerCase();
@@ -259,9 +264,9 @@ function cargarSeccion(tipo) {
                     <img src="https://img.youtube.com/vi/aEh9WnqiyAg/mqdefault.jpg" width="100%" style="border-radius:10px; margin-bottom:10px;">
                     <h3>Vida Diaria</h3>
                 </div>
-                <div class="item-lista" onclick="lanzarSoftware('https://www.youtube.com/embed/otatgqU8o0w', 'Matemàtica divertida')">
+                <div class="item-lista" onclick="lanzarSoftware('https://www.youtube.com/embed/otatgqU8o0w', 'Matemática divertida')">
                     <img src="https://img.youtube.com/vi/otatgqU8o0w/mqdefault.jpg" width="100%" style="border-radius:10px; margin-bottom:10px;">
-                    <h3>Matemàtica divertida</h3>
+                    <h3>Matemática divertida</h3>
                 </div>
                 <div class="item-lista" onclick="lanzarSoftware('https://www.youtube.com/embed/yyKkL0R59g0', 'Aprende a dividir')">
                     <img src="https://img.youtube.com/vi/yyKkL0R59g0/mqdefault.jpg" width="100%" style="border-radius:10px; margin-bottom:10px;">
@@ -271,8 +276,6 @@ function cargarSeccion(tipo) {
                     <img src="https://img.youtube.com/vi/WBqXpj1_96g/mqdefault.jpg" width="100%" style="border-radius:10px; margin-bottom:10px;">
                     <h3>Operaciones</h3>
                 </div>
-               
-
             </div>`;
     }
     else if (tipo === 'fichas') {
@@ -291,34 +294,26 @@ function cargarSeccion(tipo) {
                 <a href="https://arbolabc.com/juegos-tablas-de-multiplicar/tablas-imprimibles/operaciones-tabla-del-7" target="_blank" class="item-lista">
                     <div style="font-size:40px">✖️</div><h3>Tablas de Multiplicar</h3>
                 </a>
-                <a href="https://www.thatquiz.org/es/preview?c=eirl0256" target="_blank" class="item-lista">
-                    <div style="font-size:40px">💡</div><h3>Problemas Básicos</h3>
-                </a>
-                <a href="https://pruebat.org/lo-que-debes-saber-sobre-las-matematicas-para-la-vida-diaria/ejercicio-practica-resolviendo-operaciones-basicas/11407-331498" target="_blank" class="item-lista">
-                    <div style="font-size:40px">🛠️</div><h3>Práctica para la Vida</h3>
-                </a>
             </div>`;
     }
     else if (tipo === 'recursos') {
         html = `
             <h2 style="color:var(--naranja)">👥 Sección de Recursos</h2>
-            <p>Consejos pedagógicos para apoyar el aprendizaje.</p>
             <div class="grid-contenido">
                 <div class="item-lista">
                     <div style="font-size:40px">🏠</div>
                     <h3>Guía para Padres</h3>
-                    <p>Cómo motivar el estudio de las matemáticas.</p>
-               <li> <a href='https://gu-a-para-padres.tiiny.site/'>Menú de Padres</a></li>
-                 </div>
+                    <a href='https://gu-a-para-padres.tiiny.site/' target="_blank">Entrar al Menú</a>
+                </div>
                 <div class="item-lista">
                     <div style="font-size:40px">👤</div>
                     <h3>Guía para Estudiantes</h3>
-                 <li> <a href='https://www.pdffiller.com/s/1LObffqZo7'>Menú de Estudiantes</a></li>
+                    <a href='https://www.pdffiller.com/s/1LObffqZo7' target="_blank">Entrar al Menú</a>
                 </div>
                 <div class="item-lista">
-                <div style="font-size:40px">🎖️</div>
-                <h3>Guía para Docentes</h3>
-                <li> <a href='https://www.pdffiller.com/s/ULtGifon'>Menú de Docentes</a></li>
+                    <div style="font-size:40px">🎖️</div>
+                    <h3>Guía para Docentes</h3>
+                    <a href='https://www.pdffiller.com/s/ULtGifon' target="_blank">Entrar al Menú</a>
                 </div>
             </div>`;
     }
