@@ -109,7 +109,7 @@
 <div id="pantalla" class="main-stage">
     <h2>Entrena tu Mente, Domina los Números</h2>
     <p>Selecciona una categoría arriba para comenzar a aprender.</p>
-   <img src="https://raw.githubusercontent.com/Brimar26/portada/main/portadamate.png" alt="Portada MateVida" style="max-width:100%; border-radius:20px;">
+    <img src="https://raw.githubusercontent.com/Brimar26/portada/main/portadamate.png" alt="Portada MateVida" style="max-width:100%; border-radius:20px; display: block; margin: 0 auto;">   
 </div>
 
 <!-- Visor de Juego -->
@@ -246,6 +246,9 @@ function cargarSeccion(tipo) {
                 </div>
                 <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Matecarrera/', 'Matecarrera')">
                     <div style="font-size:40px">🏎</div><h3>Matecarrera</h3>
+                </div>
+                <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/tablas-de-multiplicar/', 'MATEBLAS')">
+                    <div style="font-size:40px">🤖✖️</div><h3>MATEBLAS</h3>
                 </div>
             </div>`;
     } 
