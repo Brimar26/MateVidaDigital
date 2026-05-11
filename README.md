@@ -109,7 +109,7 @@
 <div id="pantalla" class="main-stage">
     <h2>Entrena tu Mente, Domina los Números</h2>
     <p>Selecciona una categoría arriba para comenzar a aprender.</p>
-    <img src="<img src="nombre_de_tu_imagen.jpg" alt="Portada MateVida">" style="max-width:100%; border-radius:20px;">   
+    <img src="<img src="https://github.com/Brimar26/portada.git">" style="max-width:100%; border-radius:20px;">   
 </div>
 
 <!-- Visor de Juego -->
