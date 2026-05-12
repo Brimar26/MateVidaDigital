@@ -75,7 +75,7 @@
         .grupo-botones { display: flex; gap: 5px; }
         .btn-accion {
             border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; 
-            color: white; font-weight: bold; font-size: 10px;
+            color: white; font-weight: bold; font-size: 12px;
             display: flex; align-items: center; gap: 4px;
         }
 
