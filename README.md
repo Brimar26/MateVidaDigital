@@ -1,4 +1,3 @@
-
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -33,7 +32,7 @@
         .card {
             width: 120px; padding: 15px; border-radius: 20px; color: white;
             font-weight: bold; cursor: pointer; box-shadow: 0 5px 0px rgba(0,0,0,0.2);
-            transition: 0.2s;
+            transition: 0.2s; font-size: 16px;
         }
         .card:active { transform: translateY(4px); box-shadow: 0 1px 0px rgba(0,0,0,0.2); }
         .c-verde { background: var(--verde); }
@@ -47,6 +46,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
+        /* Ajuste de letras en los juegos (Grid) */
         .grid-contenido {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 20px; margin-top: 20px;
@@ -56,27 +56,33 @@
             cursor: pointer; transition: 0.3s; background: white;
             text-decoration: none; color: black; display: block;
         }
+        .item-lista h3 {
+            font-size: 1.2rem; /* Tamaño adaptable */
+            margin: 10px 0 0 0;
+        }
         .item-lista:hover { border-color: var(--azul); transform: scale(1.05); }
         
-        /* Estilos del Visor Corregidos para Móvil */
+        /* Estilos del Visor Corregidos */
         #visor-pro {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: #1a1a2e; z-index: 2000;
         }
         .barra-visor {
-            background: #16213e; color: white; padding: 10px; 
+            background: #16213e; color: white; padding: 10px 15px; 
             display: flex; justify-content: space-between; align-items: center;
-            flex-wrap: wrap; gap: 10px;
+            min-height: 50px;
         }
         #titulo-juego-actual {
-            flex: 1; min-width: 150px; text-align: left;
+            font-size: 1.1rem;
+            flex: 1; text-align: left;
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            margin-right: 10px;
         }
-        .grupo-botones { display: flex; gap: 5px; }
+        .grupo-botones { display: flex; gap: 8px; }
         .btn-accion {
-            border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; 
-            color: white; font-weight: bold; font-size: 10px;
-            display: flex; align-items: center; gap: 4px;
+            border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; 
+            color: white; font-weight: bold; font-size: 12px;
+            display: flex; align-items: center; gap: 6px;
         }
 
         /* Modal QR */
@@ -90,10 +96,15 @@
             background: rgba(0,0,0,0.8); z-index: 2001;
         }
 
-        @media (max-width: 480px) {
-            .barra-visor { justify-content: center; }
-            #titulo-juego-actual { text-align: center; width: 100%; font-size: 14px; }
-            .btn-accion { padding: 6px 8px; font-size: 11px; }
+        /* Ajustes Responsivos para letras legibles */
+        @media (max-width: 600px) {
+            .titulo { font-size: 30px; }
+            .card { width: 40%; font-size: 14px; }
+            .item-lista h3 { font-size: 1rem; }
+            .barra-visor { padding: 5px 10px; }
+            #titulo-juego-actual { font-size: 0.9rem; }
+            .btn-accion { padding: 6px 10px; font-size: 10px; }
+            .btn-accion span:not(:first-child) { display: none; } /* Oculta texto en botones muy pequeños si es necesario */
         }
     </style>
 </head>
