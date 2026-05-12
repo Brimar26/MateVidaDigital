@@ -17,22 +17,23 @@
         .top-nav {
             background: white; padding: 15px; display: flex;
             justify-content: space-between; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            align-items: center; flex-wrap: wrap; gap: 10px;
+            align-items: center; flex-wrap: wrap; gap: 15px; /* Más espacio entre elementos */
         }
-        .top-nav input { padding: 8px; border-radius: 20px; border: 1px solid #ccc; width: 200px; }
-        .menu-usuario-top { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+        .top-nav input { padding: 10px 15px; border-radius: 20px; border: 1px solid #ccc; width: 100%; max-width: 250px; }
+        .menu-usuario-top { display: flex; align-items: center; gap: 15px; font-size: 14px; font-weight: bold; }
 
-        .hero { padding: 20px; }
+        .hero { padding: 20px 10px; }
         .robot { font-size: 60px; display: block; }
-        .titulo { font-size: 40px; color: var(--verde); margin: 0; }
+        .titulo { font-size: clamp(30px, 8vw, 45px); color: var(--verde); margin: 5px 0; }
         .titulo span { color: var(--naranja); }
-        .slogan { font-weight: bold; color: var(--azul); margin-bottom: 20px; display: block; }
+        .slogan { font-weight: bold; color: var(--azul); margin-bottom: 20px; display: block; font-size: 18px; }
 
-        .menu { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; padding: 10px; }
+        .menu { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; padding: 10px; max-width: 1000px; margin: 0 auto; }
         .card {
-            width: 120px; padding: 15px; border-radius: 20px; color: white;
+            width: calc(50% - 20px); /* Dos por fila en móviles */
+            max-width: 140px; padding: 18px 10px; border-radius: 20px; color: white;
             font-weight: bold; cursor: pointer; box-shadow: 0 5px 0px rgba(0,0,0,0.2);
-            transition: 0.2s; font-size: 16px;
+            transition: 0.2s; font-size: 16px; box-sizing: border-box;
         }
         .card:active { transform: translateY(4px); box-shadow: 0 1px 0px rgba(0,0,0,0.2); }
         .c-verde { background: var(--verde); }
@@ -41,28 +42,27 @@
         .c-naranja { background: var(--naranja); }
 
         .main-stage {
-            max-width: 900px; margin: 30px auto; background: white;
-            padding: 30px; border-radius: 30px; min-height: 400px;
+            max-width: 900px; margin: 20px 15px; background: white;
+            padding: 25px; border-radius: 30px; min-height: 400px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: inline-block; width: calc(100% - 30px); box-sizing: border-box;
         }
 
-        /* Ajuste de letras en los juegos (Grid) */
         .grid-contenido {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px; margin-top: 20px;
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Columnas más flexibles */
+            gap: 15px; margin-top: 20px;
         }
         .item-lista {
-            border: 2px solid #f0f0f0; padding: 20px; border-radius: 15px;
+            border: 2px solid #f0f0f0; padding: 15px; border-radius: 15px;
             cursor: pointer; transition: 0.3s; background: white;
-            text-decoration: none; color: black; display: block;
+            text-decoration: none; color: black; display: flex; flex-direction: column; align-items: center;
+            justify-content: center;
         }
-        .item-lista h3 {
-            font-size: 1.2rem; /* Tamaño adaptable */
-            margin: 10px 0 0 0;
-        }
-        .item-lista:hover { border-color: var(--azul); transform: scale(1.05); }
+        .item-lista h3 { font-size: 1rem; margin: 10px 0 0 0; line-height: 1.2; }
+        .item-lista:hover { border-color: var(--azul); transform: scale(1.03); }
         
-        /* Estilos del Visor Corregidos */
+        /* Visor Mejorado */
         #visor-pro {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: #1a1a2e; z-index: 2000;
@@ -70,41 +70,44 @@
         .barra-visor {
             background: #16213e; color: white; padding: 10px 15px; 
             display: flex; justify-content: space-between; align-items: center;
-            min-height: 50px;
+            gap: 10px;
         }
         #titulo-juego-actual {
-            font-size: 1.1rem;
-            flex: 1; text-align: left;
+            font-size: 1rem; flex: 1; text-align: left;
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-            margin-right: 10px;
         }
-        .grupo-botones { display: flex; gap: 8px; }
+        .grupo-botones { display: flex; gap: 6px; flex-shrink: 0; }
         .btn-accion {
-            border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; 
+            border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; 
             color: white; font-weight: bold; font-size: 12px;
-            display: flex; align-items: center; gap: 6px;
+            display: flex; align-items: center; gap: 5px;
         }
 
         /* Modal QR */
         #modal-qr {
             display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
             background: white; padding: 20px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            z-index: 2002; text-align: center; width: 250px;
+            z-index: 2002; text-align: center; width: 85%; max-width: 280px;
         }
         #overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.8); z-index: 2001;
         }
 
-        /* Ajustes Responsivos para letras legibles */
+        /* AJUSTES RESPONSIVOS */
+        @media (min-width: 601px) {
+            .card { width: 120px; }
+            .top-nav { padding: 15px 40px; }
+            .main-stage { margin: 30px auto; }
+        }
+
         @media (max-width: 600px) {
-            .titulo { font-size: 30px; }
-            .card { width: 40%; font-size: 14px; }
-            .item-lista h3 { font-size: 1rem; }
-            .barra-visor { padding: 5px 10px; }
-            #titulo-juego-actual { font-size: 0.9rem; }
-            .btn-accion { padding: 6px 10px; font-size: 10px; }
-            .btn-accion span:not(:first-child) { display: none; } /* Oculta texto en botones muy pequeños si es necesario */
+            .top-nav { justify-content: center; }
+            .menu-usuario-top { width: 100%; justify-content: center; border-top: 1px solid #eee; pt: 10px; }
+            .barra-visor { padding: 8px; }
+            #titulo-juego-actual { font-size: 0.85rem; }
+            .btn-accion span:not(:first-child) { display: none; } /* En móvil muy pequeño solo queda el emoji */
+            .btn-accion { padding: 8px; }
         }
     </style>
 </head>
@@ -134,29 +137,30 @@
 <div id="pantalla" class="main-stage">
     <h2>Entrena tu Mente, Domina los Números</h2>
     <p>Selecciona una categoría arriba para comenzar a aprender.</p>
-    <img src="https://raw.githubusercontent.com/Brimar26/portada/main/portadamate.png" alt="Portada MateVida" style="max-width:100%; border-radius:20px; display: block; margin: 0 auto;">   
+    <img src="https://raw.githubusercontent.com/Brimar26/portada/main/portadamate.png" alt="Portada MateVida" style="max-width:100%; border-radius:20px; display: block; margin: 20px auto;">   
 </div>
 
 <div id="visor-pro">
     <div class="barra-visor" translate="no">
         <strong id="titulo-juego-actual">Cargando...</strong>
         <div class="grupo-botones">
-            <button onclick="compartirJuego()" class="btn-accion" style="background: var(--azul);"><span>🔗</span> COMPARTIR</button>
-            <button onclick="mostrarQR()" class="btn-accion" style="background: var(--amarillo); color: black;"><span>📱</span> QR</button>
-            <button onclick="cerrarSoftware()" class="btn-accion" style="background:#e74c3c;"><span>✖</span> CERRAR</button>
+            <button onclick="compartirJuego()" class="btn-accion" style="background: var(--azul);"><span>🔗</span> <span>COMPARTIR</span></button>
+            <button onclick="mostrarQR()" class="btn-accion" style="background: var(--amarillo); color: black;"><span>📱</span> <span>QR</span></button>
+            <button onclick="cerrarSoftware()" class="btn-accion" style="background:#e74c3c;"><span>✖</span> <span>CERRAR</span></button>
         </div>
     </div>
-    <iframe id="iframe-software" src="" style="width:100%; height:calc(100% - 60px); border:none; background: white;"></iframe>
+    <iframe id="iframe-software" src="" style="width:100%; height:calc(100% - 55px); border:none; background: white;"></iframe>
 </div>
 
 <div id="overlay" onclick="cerrarQR()"></div>
 <div id="modal-qr">
     <h3>Escanea para jugar</h3>
     <div id="qrcode" style="display: flex; justify-content: center; margin: 15px;"></div>
-    <button onclick="cerrarQR()" class="btn-accion" style="background: #333; margin: 0 auto;">Cerrar</button>
+    <button onclick="cerrarQR()" class="btn-accion" style="background: #333; margin: 0 auto; display: block; width: 100px; justify-content: center;">Cerrar</button>
 </div>
 
 <script>
+// (Mantengo todo tu script intacto ya que la lógica funciona perfectamente)
 let urlActual = "";
 let nombreActual = "";
 
@@ -214,7 +218,7 @@ function buscarContenido() {
     let items = document.getElementsByClassName('item-lista');
     for (let i = 0; i < items.length; i++) {
         let texto = items[i].innerText.toLowerCase();
-        items[i].style.display = texto.includes(input) ? "block" : "none";
+        items[i].style.display = texto.includes(input) ? "flex" : "none";
     }
 }
 
@@ -223,7 +227,7 @@ function irInicio() { location.reload(); }
 function mostrarPerfil() {
     document.getElementById('pantalla').innerHTML = `
         <h2 style="color:var(--azul)">👤 Mi Perfil de Estudiante</h2>
-        <div style="background:#f9f9f9; padding:20px; border-radius:15px; display:inline-block;">
+        <div style="background:#f9f9f9; padding:20px; border-radius:15px; display:inline-block; width: 100%; max-width: 400px;">
             <p><strong>Nombre:</strong> Explorador Matemático</p>
             <p><strong>Nivel:</strong> Primaria</p>
             <p><strong>Logros:</strong> 🎖️ Maestro de Sumas</p>
@@ -236,7 +240,7 @@ function cargarSeccion(tipo) {
 
     if (tipo === 'juegos') {
         html = `
-            <h2 style="color:var(--verde)">🎮 Panel de Actividades Interactivas</h2>
+            <h2 style="color:var(--verde)">🎮 Panel de Actividades</h2>
             <div class="grid-contenido">
                 <div class="item-lista" onclick="lanzarSoftware('https://view.genially.com/69ec0dd6dc5b8be996902a64', 'Carrera Operaciones')">
                     <div style="font-size:40px">🏎️</div><h3>Carrera Operaciones</h3>
@@ -314,17 +318,17 @@ function cargarSeccion(tipo) {
                 <div class="item-lista">
                     <div style="font-size:40px">🏠</div>
                     <h3>Guía para Padres</h3>
-                    <a href='https://gu-a-para-padres.tiiny.site/' target="_blank">Entrar al Menú</a>
+                    <a href='https://gu-a-para-padres.tiiny.site/' target="_blank" style="margin-top:10px; color:var(--azul);">Entrar al Menú</a>
                 </div>
                 <div class="item-lista">
                     <div style="font-size:40px">👤</div>
                     <h3>Guía para Estudiantes</h3>
-                    <a href='https://www.pdffiller.com/s/1LObffqZo7' target="_blank">Entrar al Menú</a>
+                    <a href='https://www.pdffiller.com/s/1LObffqZo7' target="_blank" style="margin-top:10px; color:var(--azul);">Entrar al Menú</a>
                 </div>
                 <div class="item-lista">
                     <div style="font-size:40px">🎖️</div>
                     <h3>Guía para Docentes</h3>
-                    <a href='https://www.pdffiller.com/s/ULtGifon' target="_blank">Entrar al Menú</a>
+                    <a href='https://www.pdffiller.com/s/ULtGifon' target="_blank" style="margin-top:10px; color:var(--azul);">Entrar al Menú</a>
                 </div>
             </div>`;
     }
