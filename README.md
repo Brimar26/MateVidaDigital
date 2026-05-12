@@ -259,7 +259,7 @@ function cargarSeccion(tipo) {
                 <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/DADOS-M-GICOS/', 'DADOS')">
                     <div style="font-size:40px">🎮</div><h3>DADOS</h3>
                 </div>
-                <div class="item-lista" onclick="lanzarSoftware('https://github.com/Brimar26/Matecarrera.git', 'Matecarrera')">
+                <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Matecarrera/', 'Matecarrera')">
                     <div style="font-size:40px">🏎</div><h3>Matecarrera</h3>
                 </div>
                 <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/tablas-de-multiplicar/', 'MATEBLAS')">
