@@ -342,7 +342,7 @@ function cargarSeccion(tipo) {
                     <div style="font-size:40px">🏎</div><h3>Matecarrera</h3>
                 </div>
                 <div class="item-lista" onclick="lanzarSoftware('https://github.com/Brimar26/Nivel-Pali')">
-                    <div style="font-size:40px">🅿️​</div><h3>Compras Palì</h3>
+                    <div style="font-size:40px">✍</div><h3>Compras Pali</h3>
                 </div>
 
                 
