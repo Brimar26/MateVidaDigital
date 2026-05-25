@@ -341,6 +341,11 @@ function cargarSeccion(tipo) {
                 <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Matecarrera/', 'Matecarrera')">
                     <div style="font-size:40px">🏎</div><h3>Matecarrera</h3>
                 </div>
+                <div class="item-lista" onclick="lanzarSoftware('https://github.com/Brimar26/Nivel-Pali')">
+                    <div style="font-size:40px">🅿️​</div><h3>Compras Palì</h3>
+                </div>
+
+                
                 <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/tablas-de-multiplicar/', 'MATEBLAS')">
                     <div style="font-size:40px">🤖✖️</div><h3>MATEBLAS</h3>
                 </div>
