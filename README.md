@@ -170,6 +170,8 @@
 <div id="pantalla" class="main-stage">
     <h2>Entrena tu Mente, Domina los Números</h2>
     <p>Selecciona una categoría arriba para comenzar a aprender.</p>
+    <p>Problemas de la vida cotidiana.</p>
+    <p>Operaciones fundamentales.</p>
     <img src="https://raw.githubusercontent.com/Brimar26/portada/main/portadamate.png" alt="Portada MateVida" style="max-width:100%; border-radius:20px; display: block; margin: 20px auto;">   
 </div>
 
