@@ -20,7 +20,7 @@
         .top-nav {
             background: white; padding: 15px; display: flex;
             justify-content: space-between; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            align-items: center; flex-wrap: wrap; gap: 15px; /* Más espacio entre elementos */
+            align-items: center; flex-wrap: wrap; gap: 15px;
         }
         .top-nav input { padding: 10px 15px; border-radius: 20px; border: 1px solid #ccc; width: 100%; max-width: 250px; }
         .menu-usuario-top { display: flex; align-items: center; gap: 15px; font-size: 14px; font-weight: bold; }
@@ -36,23 +36,26 @@
             background: var(--azul);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-size: 15px;
             font-weight: bold;
-            border-radius: 20px;
+            border-radius: 25px;
             cursor: pointer;
             box-shadow: 0 4px 0px #1976D2;
-            display: none; /* Se activa dinámicamente si el cel es compatible */
+            display: inline-flex; /* Forzado a mostrarse siempre como instalador base */
             align-items: center;
+            justify-content: center;
             gap: 8px;
-            margin: 10px auto;
+            margin: 15px auto 5px auto;
             transition: 0.2s;
+            width: 100%;
+            box-sizing: border-box;
         }
         .btn-instalar-app:active { transform: translateY(2px); box-shadow: 0 2px 0px #1976D2; }
 
         .menu { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; padding: 10px; max-width: 1000px; margin: 0 auto; }
         .card {
-            width: calc(50% - 20px); /* Dos por fila en móviles */
+            width: calc(50% - 20px);
             max-width: 140px; padding: 18px 10px; border-radius: 20px; color: white;
             font-weight: bold; cursor: pointer; box-shadow: 0 5px 0px rgba(0,0,0,0.2);
             transition: 0.2s; font-size: 16px; box-sizing: border-box;
@@ -72,7 +75,7 @@
 
         .grid-contenido {
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Columnas más flexibles */
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 15px; margin-top: 20px;
         }
         .item-lista {
@@ -84,7 +87,6 @@
         .item-lista h3 { font-size: 1rem; margin: 10px 0 0 0; line-height: 1.2; }
         .item-lista:hover { border-color: var(--azul); transform: scale(1.03); }
         
-        /* Visor Mejorado */
         #visor-pro {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: #1a1a2e; z-index: 2000;
@@ -105,7 +107,6 @@
             display: flex; align-items: center; gap: 5px;
         }
 
-        /* Modal QR */
         #modal-qr {
             display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
             background: white; padding: 20px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.5);
@@ -116,7 +117,6 @@
             background: rgba(0,0,0,0.8); z-index: 2001;
         }
 
-        /* AJUSTES RESPONSIVOS */
         @media (min-width: 601px) {
             .card { width: 120px; }
             .top-nav { padding: 15px 40px; }
@@ -128,11 +128,10 @@
             .menu-usuario-top { width: 100%; justify-content: center; border-top: 1px solid #eee; pt: 10px; }
             .barra-visor { padding: 8px; }
             #titulo-juego-actual { font-size: 0.85rem; }
-            .btn-accion span:not(:first-child) { display: none; } /* En móvil muy pequeño solo queda el emoji */
+            .btn-accion span:not(:first-child) { display: none; }
             .btn-accion { padding: 8px; }
         }
 
-        /* Estilos para el Bloqueo de Bienvenida */
         #bloqueo-inicio {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--fondo); z-index: 3000; display: flex;
@@ -147,26 +146,26 @@
             border-radius: 25px; border: 2px solid #ddd; font-size: 16px;
             box-sizing: border-box; text-align: center;
         }
-        .contenedor-login button {
+        .contenedor-login button.btn-comenzar {
             background: var(--verde); color: white; border: none;
             padding: 12px 30px; font-size: 18px; font-weight: bold;
             border-radius: 25px; cursor: pointer; width: 100%;
             box-shadow: 0 4px 0px #388E3C; transition: 0.2s;
         }
-        .contenedor-login button:active { transform: translateY(4px); box-shadow: 0 0px 0px #388E3C; }
+        .contenedor-login button.btn-comenzar:active { transform: translateY(4px); box-shadow: 0 0px 0px #388E3C; }
     </style>
 </head>
 <body>
 
 <div id="bloqueo-inicio">
     <div class="contenedor-login">
-        <span style="font-size: 50px;">🤖</span>
+        <span style="font-size: 60px;">🤖</span>
         <h2 style="color: var(--azul); margin: 10px 0;">¡Bienvenido a MateVida!</h2>
         <p style="color: #666; font-size: 14px;">Ingresa tu nombre o usuario para comenzar a jugar</p>
         <input type="text" id="nombreUsuarioInput" placeholder="Tu Nombre o Usuario...">
-        <button onclick="ingresarAApp()">¡Comenzar! 🚀</button>
+        <button class="btn-comenzar" onclick="ingresarAApp()">¡Comenzar! 🚀</button>
         
-        <button id="btnInstalarPWA" class="btn-instalar-app" onclick="ejecutarInstalacion()">📲 Descargar Aplicación en Pantalla</button>
+        <button id="btnInstalarPWA" class="btn-instalar-app" onclick="ejecutarInstalacion()">📲 Instalar Aplicación Directa</button>
     </div>
 </div>
 
@@ -221,14 +220,16 @@ let urlActual = "";
 let nombreActual = "";
 let usuarioActualGlobal = "Invitado Anónimo"; 
 
-// LÓGICA PARA CAPTURAR EL EVENTO DE INSTALACIÓN DEL CELULAR
+// CAPTURA DEL INSTALADOR DE PANTALLA (PWA)
 let eventoInstalacion = null;
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     eventoInstalacion = e;
-    // Mostrar el botón de descarga en la pantalla si cumple los requisitos
     const btnInstalar = document.getElementById('btnInstalarPWA');
-    if (btnInstalar) btnInstalar.style.display = 'flex';
+    if (btnInstalar) {
+        btnInstalar.style.background = 'var(--verde)';
+        btnInstalar.innerHTML = '✅ Aplicación Lista para Instalar';
+    }
 });
 
 function ejecutarInstalacion() {
@@ -236,14 +237,16 @@ function ejecutarInstalacion() {
         eventoInstalacion.prompt();
         eventoInstalacion.userChoice.then((choiceResult) => {
             if (choiceResult.outcome === 'accepted') {
-                console.log('El usuario instaló MateVida Digital');
+                console.log('El estudiante instaló MateVida Digital en su escritorio/celular');
             }
             eventoInstalacion = null;
         });
+    } else {
+        alert("Para instalar sin código ni enlaces:\n1. Si estás en Android/Chrome presiona los 3 puntos arriba a la derecha y selecciona 'Instalar aplicación' o 'Agregar a pantalla principal'.\n2. En iPhone (Safari), pulsa el botón 'Compartir' y selecciona 'Agregar a inicio'.");
     }
 }
 
-// LÓGICA DE CONTROL DE TRÁFICO LOCAL Y ACCESO
+// CONTROL DE TRÁFICO CORREGIDO (CAMBIADO A LOCALSTORAGE PARA QUE NO SE BORRE)
 const CONTRASEÑA_ADMIN = "admin123"; 
 
 function ingresarAApp() {
@@ -255,9 +258,10 @@ function ingresarAApp() {
     
     usuarioActualGlobal = nombre; 
     
-    let historico = JSON.parse(sessionStorage.getItem('trafico_usuarios')) || [];
-    historico.push({ nombre: nombre, hora: new Date().toLocaleTimeString(), accion: "Ingresó al Portal Principal" });
-    sessionStorage.setItem('trafico_usuarios', JSON.stringify(historico));
+    // Corregido: Usa localStorage en lugar de sessionStorage para evitar pérdidas de registros
+    let historico = JSON.parse(localStorage.getItem('trafico_usuarios')) || [];
+    historico.push({ nombre: nombre, hora: new Date().toLocaleString(), accion: "Ingresó al Portal Principal" });
+    localStorage.setItem('trafico_usuarios', JSON.stringify(historico));
     
     document.getElementById('bloqueo-inicio').style.display = 'none';
 }
@@ -272,7 +276,7 @@ function accederTrafico() {
 }
 
 function mostrarPanelTrafico() {
-    let historico = JSON.parse(sessionStorage.getItem('trafico_usuarios')) || [];
+    let historico = JSON.parse(localStorage.getItem('trafico_usuarios')) || [];
     let listaHTML = historico.length === 0 
         ? "<p>No hay registros de ingresos todavía.</p>" 
         : `<ul style="text-align:left; display:inline-block; margin:10px auto; max-height: 300px; overflow-y: auto; width: 100%;">` + 
@@ -280,11 +284,11 @@ function mostrarPanelTrafico() {
           `</ul>`;
 
     document.getElementById('pantalla').innerHTML = `
-        <h2 style="color:var(--azul)">📊 Panel de Tráfico (Privado)</h2>
+        <h2 style="color:var(--azul)">📊 Panel de Tráfico Permanente (Historial Completo)</h2>
         <div style="background:#f9f9f9; padding:20px; border-radius:15px; display:inline-block; width: 100%; max-width: 500px; box-sizing:border-box;">
-            <p><strong>Total de interacciones registradas en esta sesión:</strong> ${historico.length}</p>
+            <p><strong>Total de registros históricos acumulados:</strong> ${historico.length}</p>
             <hr style="border:1px solid #ddd;">
-            <h4>Historial de Navegación y Enlaces:</h4>
+            <h4>Historial Completo:</h4>
             ${listaHTML}
         </div>`;
 }
@@ -298,13 +302,13 @@ function lanzarSoftware(url, nombre) {
     document.getElementById('visor-pro').style.display = 'block';
     document.body.style.overflow = 'hidden'; 
 
-    let historico = JSON.parse(sessionStorage.getItem('trafico_usuarios')) || [];
+    let historico = JSON.parse(localStorage.getItem('trafico_usuarios')) || [];
     historico.push({ 
         nombre: usuarioActualGlobal, 
-        hora: new Date().toLocaleTimeString(), 
+        hora: new Date().toLocaleString(), 
         accion: `Abrió la actividad: "${nombre}"` 
     });
-    sessionStorage.setItem('trafico_usuarios', JSON.stringify(historico));
+    localStorage.setItem('trafico_usuarios', JSON.stringify(historico));
 }
 
 async function compartirJuego() {
@@ -468,13 +472,13 @@ function cargarSeccion(tipo) {
 }
 
 function registrarEnlaceExterno(nombreEnlace) {
-    let historico = JSON.parse(sessionStorage.getItem('trafico_usuarios')) || [];
+    let historico = JSON.parse(localStorage.getItem('trafico_usuarios')) || [];
     historico.push({ 
         nombre: usuarioActualGlobal, 
-        hora: new Date().toLocaleTimeString(), 
+        hora: new Date().toLocaleString(), 
         accion: `Abrió enlace externo: "${nombreEnlace}"` 
     });
-    sessionStorage.setItem('trafico_usuarios', JSON.stringify(historico));
+    localStorage.setItem('trafico_usuarios', JSON.stringify(historico));
 }
 </script>
 </body>
