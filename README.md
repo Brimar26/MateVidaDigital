@@ -409,7 +409,7 @@ function cargarSeccion(tipo) {
                     <div style="font-size:40px">🏫</div><h3>Escuela Mate - Ruleta</h3>
                 </div>
                  <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Tablas-de-Multiplicar-Pro/', 'Tablas de Multiplicar Pro')">
-                    <div style="font-size:40px">( •_•)>⌐■-■</div><h3>Tablas de Multiplicar Pro</h3>
+                    <div style="font-size:40px">🙋‍♂️</div><h3>Tablas de Multiplicar Pro</h3>
                 </div>
                 <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Nivel-Pali/', 'NIVEL PALI')">
                     <div style="font-size:40px">🅿️</div><h3>NIVEL PALI</h3>
