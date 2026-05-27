@@ -1,3 +1,4 @@
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -42,7 +43,7 @@
             border-radius: 25px;
             cursor: pointer;
             box-shadow: 0 4px 0px #1976D2;
-            display: inline-flex; /* Forzado a mostrarse siempre como instalador base */
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
@@ -125,7 +126,7 @@
 
         @media (max-width: 600px) {
             .top-nav { justify-content: center; }
-            .menu-usuario-top { width: 100%; justify-content: center; border-top: 1px solid #eee; pt: 10px; }
+            .menu-usuario-top { width: 100%; justify-content: center; border-top: 1px solid #eee; padding-top: 10px; }
             .barra-visor { padding: 8px; }
             #titulo-juego-actual { font-size: 0.85rem; }
             .btn-accion span:not(:first-child) { display: none; }
@@ -246,7 +247,7 @@ function ejecutarInstalacion() {
     }
 }
 
-// CONTROL DE TRÁFICO CORREGIDO (CAMBIADO A LOCALSTORAGE PARA QUE NO SE BORRE)
+// CONTROL DE TRÁFICO CONFIGURADO CON LOCALSTORAGE
 const CONTRASEÑA_ADMIN = "admin123"; 
 
 function ingresarAApp() {
@@ -258,7 +259,6 @@ function ingresarAApp() {
     
     usuarioActualGlobal = nombre; 
     
-    // Corregido: Usa localStorage en lugar de sessionStorage para evitar pérdidas de registros
     let historico = JSON.parse(localStorage.getItem('trafico_usuarios')) || [];
     historico.push({ nombre: nombre, hora: new Date().toLocaleString(), accion: "Ingresó al Portal Principal" });
     localStorage.setItem('trafico_usuarios', JSON.stringify(historico));
@@ -399,7 +399,7 @@ function cargarSeccion(tipo) {
                 <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Matecarrera/', 'Matecarrera')">
                     <div style="font-size:40px">🏎</div><h3>Matecarrera</h3>
                 </div>
-               <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Nivel-Pali/', 'NIVEL PALI')">
+                <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Nivel-Pali/', 'NIVEL PALI')">
                     <div style="font-size:40px">🅿️</div><h3>NIVEL PALI</h3>
                 </div>
                 <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/tablas-de-multiplicar/', 'MATEBLAS')">
@@ -439,7 +439,7 @@ function cargarSeccion(tipo) {
                 <a href="https://www.jica.go.jp/Resource/project/elsalvador/004/materials/ku57pq00003u6zom-att/cuaderno_ejercicios_primaria_05.pdf" target="_blank" class="item-lista" onclick="registrarEnlaceExterno('Ficha: Cuaderno de Ejercicios')">
                     <div style="font-size:40px">📓</div><h3>Cuaderno de Ejercicios</h3>
                 </a>
-                <a href="https://www.mamutmatematicas.com/ejercicios/tabla-orden-operaciones.php" target="_blank" class="item-layout" onclick="registrarEnlaceExterno('Ficha: Orden de Operaciones')">
+                <a href="https://www.mamutmatematicas.com/ejercicios/tabla-orden-operaciones.php" target="_blank" class="item-lista" onclick="registrarEnlaceExterno('Ficha: Orden de Operaciones')">
                     <div style="font-size:40px">⚖️</div><h3>Orden de Operaciones</h3>
                 </a>
                 <a href="https://arbolabc.com/juegos-tablas-de-multiplicar/tablas-imprimibles/operaciones-tabla-del-7" target="_blank" class="item-lista" onclick="registrarEnlaceExterno('Ficha: Tablas de Multiplicar')">
