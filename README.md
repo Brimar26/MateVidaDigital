@@ -3,6 +3,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MateVida Digital - Portal Educativo</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2196F3">
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         :root {
@@ -27,6 +30,25 @@
         .titulo { font-size: clamp(30px, 8vw, 45px); color: var(--verde); margin: 5px 0; }
         .titulo span { color: var(--naranja); }
         .slogan { font-weight: bold; color: var(--azul); margin-bottom: 20px; display: block; font-size: 18px; }
+
+        /* ESTILO DEL BOTÓN DE INSTALACIÓN SOLICITADO */
+        .btn-instalar-app {
+            background: var(--azul);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 0px #1976D2;
+            display: none; /* Se activa dinámicamente si el cel es compatible */
+            align-items: center;
+            gap: 8px;
+            margin: 10px auto;
+            transition: 0.2s;
+        }
+        .btn-instalar-app:active { transform: translateY(2px); box-shadow: 0 2px 0px #1976D2; }
 
         .menu { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; padding: 10px; max-width: 1000px; margin: 0 auto; }
         .card {
@@ -143,6 +165,8 @@
         <p style="color: #666; font-size: 14px;">Ingresa tu nombre o usuario para comenzar a jugar</p>
         <input type="text" id="nombreUsuarioInput" placeholder="Tu Nombre o Usuario...">
         <button onclick="ingresarAApp()">¡Comenzar! 🚀</button>
+        
+        <button id="btnInstalarPWA" class="btn-instalar-app" onclick="ejecutarInstalacion()">📲 Descargar Aplicación en Pantalla</button>
     </div>
 </div>
 
@@ -195,9 +219,32 @@
 <script>
 let urlActual = "";
 let nombreActual = "";
+let usuarioActualGlobal = "Invitado Anónimo"; 
+
+// LÓGICA PARA CAPTURAR EL EVENTO DE INSTALACIÓN DEL CELULAR
+let eventoInstalacion = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    eventoInstalacion = e;
+    // Mostrar el botón de descarga en la pantalla si cumple los requisitos
+    const btnInstalar = document.getElementById('btnInstalarPWA');
+    if (btnInstalar) btnInstalar.style.display = 'flex';
+});
+
+function ejecutarInstalacion() {
+    if (eventoInstalacion) {
+        eventoInstalacion.prompt();
+        eventoInstalacion.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('El usuario instaló MateVida Digital');
+            }
+            eventoInstalacion = null;
+        });
+    }
+}
 
 // LÓGICA DE CONTROL DE TRÁFICO LOCAL Y ACCESO
-const CONTRASEÑA_ADMIN = "admin123"; // Cambia esta contraseña si lo deseas
+const CONTRASEÑA_ADMIN = "admin123"; 
 
 function ingresarAApp() {
     let nombre = document.getElementById('nombreUsuarioInput').value.trim();
@@ -206,12 +253,12 @@ function ingresarAApp() {
         return;
     }
     
-    // Guardar el usuario en el historial de la sesión actual
+    usuarioActualGlobal = nombre; 
+    
     let historico = JSON.parse(sessionStorage.getItem('trafico_usuarios')) || [];
-    historico.push({ nombre: nombre, hora: new Date().toLocaleTimeString() });
+    historico.push({ nombre: nombre, hora: new Date().toLocaleTimeString(), accion: "Ingresó al Portal Principal" });
     sessionStorage.setItem('trafico_usuarios', JSON.stringify(historico));
     
-    // Ocultar la pantalla de bienvenida
     document.getElementById('bloqueo-inicio').style.display = 'none';
 }
 
@@ -228,16 +275,16 @@ function mostrarPanelTrafico() {
     let historico = JSON.parse(sessionStorage.getItem('trafico_usuarios')) || [];
     let listaHTML = historico.length === 0 
         ? "<p>No hay registros de ingresos todavía.</p>" 
-        : `<ul style="text-align:left; display:inline-block; margin:10px auto;">` + 
-          historico.map(u => `<li><strong>${u.nombre}</strong> ingresó a las ${u.hora}</li>`).join('') + 
+        : `<ul style="text-align:left; display:inline-block; margin:10px auto; max-height: 300px; overflow-y: auto; width: 100%;">` + 
+          historico.map(u => `<li>[${u.hora}] <strong>${u.nombre}</strong> -> <span style="color:var(--azul)">${u.accion}</span></li>`).join('') + 
           `</ul>`;
 
     document.getElementById('pantalla').innerHTML = `
         <h2 style="color:var(--azul)">📊 Panel de Tráfico (Privado)</h2>
         <div style="background:#f9f9f9; padding:20px; border-radius:15px; display:inline-block; width: 100%; max-width: 500px; box-sizing:border-box;">
-            <p><strong>Total de accesos registrados en esta sesión:</strong> ${historico.length}</p>
+            <p><strong>Total de interacciones registradas en esta sesión:</strong> ${historico.length}</p>
             <hr style="border:1px solid #ddd;">
-            <h4>Usuarios que han entrado:</h4>
+            <h4>Historial de Navegación y Enlaces:</h4>
             ${listaHTML}
         </div>`;
 }
@@ -250,6 +297,14 @@ function lanzarSoftware(url, nombre) {
     iframe.src = url;
     document.getElementById('visor-pro').style.display = 'block';
     document.body.style.overflow = 'hidden'; 
+
+    let historico = JSON.parse(sessionStorage.getItem('trafico_usuarios')) || [];
+    historico.push({ 
+        nombre: usuarioActualGlobal, 
+        hora: new Date().toLocaleTimeString(), 
+        accion: `Abrió la actividad: "${nombre}"` 
+    });
+    sessionStorage.setItem('trafico_usuarios', JSON.stringify(historico));
 }
 
 async function compartirJuego() {
@@ -301,7 +356,6 @@ function buscarContenido() {
 }
 
 function irInicio() { 
-    // Evitamos el reload completo para no perder temporalmente el sessionStorage del tráfico en la demo rápida
     document.getElementById('pantalla').innerHTML = `
         <h2>Entrena tu Mente, Domina los Números</h2>
         <p>Selecciona una categoría arriba para comenzar a aprender.</p>
@@ -341,11 +395,9 @@ function cargarSeccion(tipo) {
                 <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Matecarrera/', 'Matecarrera')">
                     <div style="font-size:40px">🏎</div><h3>Matecarrera</h3>
                 </div>
-                <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Nivel-Pali/', 'NIVEL PALI')">
+               <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Nivel-Pali/', 'NIVEL PALI')">
                     <div style="font-size:40px">🅿️</div><h3>NIVEL PALI</h3>
                 </div>
-
-                
                 <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/tablas-de-multiplicar/', 'MATEBLAS')">
                     <div style="font-size:40px">🤖✖️</div><h3>MATEBLAS</h3>
                 </div>
@@ -377,16 +429,16 @@ function cargarSeccion(tipo) {
         html = `
             <h2 style="color:var(--amarillo)">📚 Fichas e Imprimibles</h2>
             <div class="grid-contenido">
-                <a href="https://web.seducoahuila.gob.mx/biblioweb/upload/operaciones-y-problemas-3c2ba-de-primaria%20(1).pdf" target="_blank" class="item-lista">
+                <a href="https://web.seducoahuila.gob.mx/biblioweb/upload/operaciones-y-problemas-3c2ba-de-primaria%20(1).pdf" target="_blank" class="item-lista" onclick="registrarEnlaceExterno('Ficha: Operaciones y Problemas')">
                     <div style="font-size:40px">🧮</div><h3>Operaciones y Problemas</h3>
                 </a>
-                <a href="https://www.jica.go.jp/Resource/project/elsalvador/004/materials/ku57pq00003u6zom-att/cuaderno_ejercicios_primaria_05.pdf" target="_blank" class="item-lista">
+                <a href="https://www.jica.go.jp/Resource/project/elsalvador/004/materials/ku57pq00003u6zom-att/cuaderno_ejercicios_primaria_05.pdf" target="_blank" class="item-lista" onclick="registrarEnlaceExterno('Ficha: Cuaderno de Ejercicios')">
                     <div style="font-size:40px">📓</div><h3>Cuaderno de Ejercicios</h3>
                 </a>
-                <a href="https://www.mamutmatematicas.com/ejercicios/tabla-orden-operaciones.php" target="_blank" class="item-lista">
+                <a href="https://www.mamutmatematicas.com/ejercicios/tabla-orden-operaciones.php" target="_blank" class="item-layout" onclick="registrarEnlaceExterno('Ficha: Orden de Operaciones')">
                     <div style="font-size:40px">⚖️</div><h3>Orden de Operaciones</h3>
                 </a>
-                <a href="https://arbolabc.com/juegos-tablas-de-multiplicar/tablas-imprimibles/operaciones-tabla-del-7" target="_blank" class="item-lista">
+                <a href="https://arbolabc.com/juegos-tablas-de-multiplicar/tablas-imprimibles/operaciones-tabla-del-7" target="_blank" class="item-lista" onclick="registrarEnlaceExterno('Ficha: Tablas de Multiplicar')">
                     <div style="font-size:40px">✖️</div><h3>Tablas de Multiplicar</h3>
                 </a>
             </div>`;
@@ -398,21 +450,31 @@ function cargarSeccion(tipo) {
                 <div class="item-lista">
                     <div style="font-size:40px">🏠</div>
                     <h3>Guía para Padres</h3>
-                    <a href='https://gu-a-para-padres.tiiny.site/' target="_blank" style="margin-top:10px; color:var(--azul);">Entrar al Menú</a>
+                    <a href='https://gu-a-para-padres.tiiny.site/' target="_blank" style="margin-top:10px; color:var(--azul);" onclick="registrarEnlaceExterno('Menú: Guía para Padres')">Entrar al Menú</a>
                 </div>
                 <div class="item-lista">
                     <div style="font-size:40px">👤</div>
                     <h3>Guía para Estudiantes</h3>
-                    <a href='https://www.pdffiller.com/s/1LObffqZo7' target="_blank" style="margin-top:10px; color:var(--azul);">Entrar al Menú</a>
+                    <a href='https://www.pdffiller.com/s/1LObffqZo7' target="_blank" style="margin-top:10px; color:var(--azul);" onclick="registrarEnlaceExterno('Menú: Guía para Estudiantes')">Entrar al Menú</a>
                 </div>
                 <div class="item-lista">
                     <div style="font-size:40px">🎖️</div>
                     <h3>Guía para Docentes</h3>
-                    <a href='https://www.pdffiller.com/s/ULtGifon' target="_blank" style="margin-top:10px; color:var(--azul);">Entrar al Menú</a>
+                    <a href='https://www.pdffiller.com/s/ULtGifon' target="_blank" style="margin-top:10px; color:var(--azul);" onclick="registrarEnlaceExterno('Menú: Guía para Docentes')">Entrar al Menú</a>
                 </div>
             </div>`;
     }
     pantalla.innerHTML = html;
+}
+
+function registrarEnlaceExterno(nombreEnlace) {
+    let historico = JSON.parse(sessionStorage.getItem('trafico_usuarios')) || [];
+    historico.push({ 
+        nombre: usuarioActualGlobal, 
+        hora: new Date().toLocaleTimeString(), 
+        accion: `Abrió enlace externo: "${nombreEnlace}"` 
+    });
+    sessionStorage.setItem('trafico_usuarios', JSON.stringify(historico));
 }
 </script>
 </body>
