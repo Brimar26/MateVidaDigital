@@ -414,6 +414,11 @@ function cargarSeccion(tipo) {
                 <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Nivel-Pali/', 'NIVEL PALI')">
                     <div style="font-size:40px">🅿️</div><h3>NIVEL PALI</h3>
                 </div>
+                 <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Mate-Aventura-Espacial-/', 'Mate Aventura Espacial')">
+                    <div style="font-size:40px">🚀</div><h3>Mate Aventura Espacial</h3>
+                </div>
+
+                
                 <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/tablas-de-multiplicar/', 'MATEBLAS')">
                     <div style="font-size:40px">🤖✖️</div><h3>MATEBLAS</h3>
                 </div>
