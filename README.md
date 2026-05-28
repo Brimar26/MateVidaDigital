@@ -484,10 +484,10 @@ function cargarSeccion(tipo) {
         html = `
             <h2 style="color:var(--verde)">🎮 Panel de Actividades</h2>
             <div class="grid-contenido">
-                <div class="item-lista" onclick="lanzarSoftware('https://view.genially.com/69ec0dd6dc5b8be996902a64', 'Carrera Operaciones')">
+                <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Carrera-de-Operaciones/', 'Carrera Operaciones')">
                     <div style="font-size:40px">🏎️</div><h3>Carrera Operaciones</h3>
                 </div>
-                <div class="item-lista" onclick="lanzarSoftware('https://view.genially.com/69ec0094c6e29311f5854247', 'Operaciones Matemáticas')">
+                <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Operaciones-Matem-ticas/', 'Operaciones Matemáticas')">
                     <div style="font-size:40px">➕</div><h3>Operaciones Matemáticas</h3>
                 </div>
                 <div class="item-lista" onclick="lanzarSoftware('https://es.educaplay.com/juego/28831395-operaciones_fundamentales_si_no.html', 'Si o No')">
