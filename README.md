@@ -12,7 +12,7 @@
             const manifest = {
                 "name": "MateVida Digital",
                 "short_name": "MateVida",
-                "description": "Portal Educativo de Matemática Interactive",
+                "description": "Portal Educativo de Matemática Interactiva",
                 "start_url": window.location.href,
                 "display": "standalone",
                 "background_color": "#e3f2fd",
@@ -100,25 +100,56 @@
         .item-lista h3 { font-size: 1rem; margin: 10px 0 0 0; line-height: 1.2; }
         .item-lista:hover { border-color: var(--azul); transform: scale(1.03); }
         
-        /* VISOR PRO MEJORADO */
-        #visor-pro { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a1a2e; z-index: 2000; }
-        .barra-visor { background: #16213e; color: white; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
-        #titulo-juego-actual { font-size: 1rem; flex: 1; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        /* ================================================================================= */
+        /* ESTRUCTURA RESPONSIVA ACTUALIZADA Y MEJORADA PARA DISPOSITIVOS MÓVILES */
+        /* ================================================================================= */
+        #visor-pro { 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: #1a1a2e; z-index: 2000; flex-direction: column;
+        }
+        .barra-visor { 
+            background: #16213e; color: white; padding: 10px 15px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            gap: 10px; flex-shrink: 0; min-height: 50px; box-sizing: border-box;
+        }
+        #titulo-juego-actual { 
+            font-size: 1.1rem; flex: 1; text-align: left; 
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 
+        }
         .grupo-botones { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; }
-        .btn-accion { border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; color: white; font-weight: bold; font-size: 12px; display: flex; align-items: center; gap: 5px; }
+        .btn-accion { 
+            border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; 
+            color: white; font-weight: bold; font-size: 12px; display: flex; 
+            align-items: center; gap: 5px; box-sizing: border-box;
+        }
+
+        /* Contenedor adaptativo inteligente */
+        .contenedor-adaptable-iframe {
+            flex: 1; width: 100%; background: #ffffff; position: relative; 
+            overflow: hidden; display: flex; justify-content: center; align-items: center;
+        }
+        
+        /* Configuración nativa limpia para el iframe */
+        #iframe-software { 
+            width: 100%; height: 100%; border: none; background: white;
+            transform-origin: center center; display: block;
+        }
+        /* ================================================================================= */
 
         /* MODALES */
         #modal-qr, #modal-mensaje { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.5); z-index: 2002; text-align: center; width: 85%; max-width: 320px; }
         #modal-mensaje textarea { width: 100%; height: 100px; padding: 10px; border-radius: 10px; border: 2px solid #ddd; resize: none; font-family: sans-serif; box-sizing: border-box; margin-bottom: 10px; }
         #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2001; }
 
+        /* REGLAS RESPONSIVAS ADICIONALES EN MÓVILES */
         @media (min-width: 601px) { .card { width: 120px; } .top-nav { padding: 15px 40px; } .main-stage { margin: 30px auto; } }
         @media (max-width: 600px) {
             .top-nav { justify-content: center; }
             .menu-usuario-top { width: 100%; justify-content: center; border-top: 1px solid #eee; padding-top: 10px; }
-            .barra-visor { padding: 8px; }
-            #titulo-juego-actual { font-size: 0.85rem; width: 100%; text-align: center; }
-            .grupo-botones { width: 100%; justify-content: center; }
+            .barra-visor { padding: 8px; flex-direction: column; gap: 8px; }
+            #titulo-juego-actual { font-size: 0.95rem; width: 100%; text-align: center; white-space: normal; }
+            .grupo-botones { width: 100%; justify-content: center; gap: 4px; }
+            .btn-accion { padding: 6px 8px; font-size: 11px; }
         }
 
         #bloqueo-inicio { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--fondo); z-index: 3000; display: flex; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
@@ -157,8 +188,6 @@
                 <circle cx="256" cy="256" r="240" fill="#ffffff"/>
                 <circle cx="256" cy="256" r="200" fill="#1A237E"/>
                 <rect x="140" y="170" width="232" height="180" rx="30" fill="#ECF0F1"/>
-                <rect x="180" y="210" width="40" height="40" rx="10" fill="#4CAF50"/>
-                <rect x="292" y="210" width="40" height="40" rx="10" fill="#4CAF50"/>
             </svg>
             <span>Instalar Aplicación en Dispositivo</span>
         </button>
@@ -213,7 +242,10 @@
             <button onclick="cerrarSoftware()" class="btn-accion" style="background:#e74c3c;"><span>✖</span> <span>CERRAR</span></button>
         </div>
     </div>
-    <iframe id="iframe-software" src="" style="width:100%; height:calc(100% - 55px); border:none; background: white;"></iframe>
+    
+    <div class="contenedor-adaptable-iframe" id="contenedorIframe">
+        <iframe id="iframe-software" src="" onload="ajustarPantallaJuego()"></iframe>
+    </div>
 </div>
 
 <div id="overlay" onclick="cerrarTodosModales()"></div>
@@ -265,9 +297,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 function ejecutarInstalacion() {
     if (eventoInstalacion) {
         eventoInstalacion.prompt();
-        eventoInstalacion.userChoice.then((choiceResult) => {
-            eventoInstalacion = null;
-        });
+        eventoInstalacion.userChoice.then((choiceResult) => { eventoInstalacion = null; });
     } else {
         alert("¡MateVida Digital está lista!\n\nSi el botón no se activa automáticamente en tu navegador:\n1. En Android: Tres puntos -> 'Instalar aplicación'.\n2. En iPhone: Compartir -> 'Agregar a inicio'.");
     }
@@ -290,11 +320,8 @@ function ingresarAApp() {
 
 function accederTrafico() {
     let psw = prompt("SÓLO ADMINISTRADOR: Introduce la contraseña para ver el tráfico y mensajes:");
-    if (psw === CONTRASEÑA_ADMIN) {
-        mostrarPanelTrafico();
-    } else if (psw !== null) {
-        alert("Contraseña incorrecta. Acceso denegado.");
-    }
+    if (psw === CONTRASEÑA_ADMIN) { mostrarPanelTrafico(); } 
+    else if (psw !== null) { alert("Contraseña incorrecta. Acceso denegado."); }
 }
 
 function mostrarPanelTrafico() {
@@ -328,13 +355,18 @@ function lanzarSoftware(url, nombre) {
     urlActual = url;
     nombreActual = nombre;
     document.getElementById('titulo-juego-actual').innerText = nombre;
+    
     const iframe = document.getElementById('iframe-software');
+    
+    // Reseteamos dimensiones nativas antes de inyectar el nuevo src
+    iframe.style.transform = "none";
+    iframe.style.width = "100%";
+    iframe.style.height = "100%";
+    
     iframe.src = url;
     
-    // Cargar contador de Me Gusta
     actualizarContadorLikesPantalla();
-
-    document.getElementById('visor-pro').style.display = 'block';
+    document.getElementById('visor-pro').style.display = 'flex';
     document.body.style.overflow = 'hidden'; 
 
     let historico = JSON.parse(localStorage.getItem('trafico_usuarios')) || [];
@@ -342,20 +374,54 @@ function lanzarSoftware(url, nombre) {
     localStorage.setItem('trafico_usuarios', JSON.stringify(historico));
 }
 
-/* --- NUEVA LOGICA: REINICIAR ACTIVIDAD --- */
-function reiniciarJuego() {
-    if (urlActual !== "") {
-        const iframe = document.getElementById('iframe-software');
-        iframe.src = urlActual; // Recarga el iframe devolviendo al alumno al inicio del juego
+/* ================================================================================= */
+/* FUNCIÓN DE CORRECCIÓN: REDIMENSIONADO SIN BLOQUEOS NI PANTALLAS EN BLANCO */
+/* ================================================================================= */
+function ajustarPantallaJuego() {
+    const contenedor = document.getElementById('contenedorIframe');
+    const iframe = document.getElementById('iframe-software');
+    
+    if (!contenedor || !iframe || !iframe.src || iframe.src === "about:blank") return;
+
+    const anchoContenedor = contenedor.clientWidth;
+    const altoContenedor = contenedor.clientHeight;
+
+    // Si es pantalla móvil (celular)
+    if (anchoContenedor < 768) {
+        const lienzoVirtualAncho = 960;  // Proporción ideal estándar
+        const lienzoVirtualAlto = 640;
+
+        const escalaAncho = anchoContenedor / lienzoVirtualAncho;
+        const escalaAlto = altoContenedor / lienzoVirtualAlto;
+        const escalaFinal = Math.min(escalaAncho, escalaAlto, 1);
+
+        iframe.style.width = lienzoVirtualAncho + "px";
+        iframe.style.height = lienzoVirtualAlto + "px";
+        iframe.style.transform = `scale(${escalaFinal})`;
+    } else {
+        // En computadora se expande al 100% de manera limpia
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.transform = "none";
     }
 }
 
-/* --- NUEVA LOGICA: CONTADOR ME GUSTA --- */
+// Recalcular el tamaño dinámicamente si el usuario voltea el celular
+window.addEventListener('resize', () => {
+    setTimeout(ajustarPantallaJuego, 150);
+});
+/* ================================================================================= */
+
+function reiniciarJuego() {
+    if (urlActual !== "") {
+        const iframe = document.getElementById('iframe-software');
+        iframe.src = urlActual;
+    }
+}
+
 function darMeGusta() {
     let likesData = JSON.parse(localStorage.getItem('matevida_likes')) || {};
-    if (!likesData[nombreActual]) {
-        likesData[nombreActual] = 0;
-    }
+    if (!likesData[nombreActual]) { likesData[nombreActual] = 0; }
     likesData[nombreActual] += 1;
     localStorage.setItem('matevida_likes', JSON.stringify(likesData));
     actualizarContadorLikesPantalla();
@@ -371,7 +437,6 @@ function actualizarContadorLikesPantalla() {
     document.getElementById('txt-megusta').innerText = `ME GUSTA (${totalLikes})`;
 }
 
-/* --- NUEVA LOGICA: MENSAJES PRIVADOS --- */
 function abrirModalMensaje() {
     document.getElementById('textoMensajePrivado').value = "";
     document.getElementById('modal-mensaje').style.display = 'block';
@@ -404,17 +469,12 @@ function cerrarTodosModales() {
     document.getElementById('overlay').style.display = 'none';
 }
 
-/* --- CONTROL DE MUSICA Y APAGADO AUTOMÁTICO AL SALIR --- */
 function cerrarSoftware() {
-    // 1. Apagar automáticamente la música al salir de la actividad
     const reproductor = document.getElementById('musica-fondo');
-    if (!reproductor.paused) {
-        reproductor.pause();
-    }
+    if (!reproductor.paused) { reproductor.pause(); }
     document.getElementById('txt-musica').innerText = "MÚSICA: OFF";
     document.getElementById('btn-musica').style.background = "#9b59b6";
 
-    // 2. Ocultar visor y limpiar iframe
     document.getElementById('visor-pro').style.display = 'none';
     document.getElementById('iframe-software').src = ""; 
     document.body.style.overflow = 'auto';
