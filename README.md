@@ -537,6 +537,11 @@ function cargarSeccion(tipo) {
                 <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Desafio-Total/', 'Desafìo Total')">
                     <div style="font-size:40px">🎓</div><h3>Desafìo Total</h3>
                 </div>
+                 <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Mensaje-Secreto/', 'Mensaje Secreto')">
+                    <div style="font-size:40px">🧩</div><h3>Mensaje Secreto</h3>
+                </div>
+
+
 
 
                 <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/tablas-de-multiplicar/', 'MATEBLAS')">
