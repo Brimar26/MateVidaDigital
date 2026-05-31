@@ -516,6 +516,10 @@ function cargarSeccion(tipo) {
                  <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/La-escuela/', 'La escuela')">
                     <div style="font-size:40px">🏫</div><h3>La escuela</h3>
                 </div>
+                <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Mate-Escudo/', 'Mate Escudo')">
+                    <div style="font-size:40px">🏃‍♂️🛡️</div><h3>Mate Escudo</h3>
+                </div>
+
                 <div class="item-lista" onclick="lanzarSoftware('https://brimar26.github.io/Ruleta-Tablas-y-DIvisiones/', 'Tablas y Divisiones')">
                     <div style="font-size:40px">🎡</div><h3>Tablas y Divisiones</h3>
                 </div>
