@@ -196,15 +196,7 @@
     <div class="barra-visor" translate="no">
         <strong id="titulo-juego-actual">Cargando...</strong>
         <div class="grupo-botones">
-            <button onclick="alternarMusica()" id="btn-musica" class="btn-accion" style="background: #9b59b6;">
-                <span>🎵</span> <span id="txt-musica">MÚSICA: OFF</span>
-            </button>
-            <button onclick="darMeGusta()" class="btn-accion" style="background: #e67e22;">
-                <span>👍</span> <span id="txt-megusta">ME GUSTA (0)</span>
-            </button>
-            <button onclick="abrirModalMensaje()" class="btn-accion" style="background: #1abc9c;">
-                <span>💬</span> <span>MENSAJE</span>
-            </button>
+    
             <button onclick="reiniciarJuego()" class="btn-accion" style="background: #27ae60;">
                 <span>🔄</span> <span>REINICIAR</span>
             </button>
