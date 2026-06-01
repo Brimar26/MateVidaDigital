@@ -130,10 +130,6 @@
 </head>
 <body>
 
-<audio id="musica-fondo" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
-
 <div id="bloqueo-inicio">
     <div class="contenedor-login">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 100px; height: 100px; margin-bottom: 10px;">
